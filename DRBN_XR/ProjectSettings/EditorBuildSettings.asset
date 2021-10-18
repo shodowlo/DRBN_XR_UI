@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/DRBN_STEAMVR/Scenes/molworkshop.unity
     guid: 2b4d4d6b14c35a444b56da4e7bb2ce16
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 40566a7f4297862429776b2ebb95ea13,
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 403af6ded35d42e4aa73276b8bad383a,
       type: 2}
-    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: b12e82bbe7154074bb29e93969e1d9ce,
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 67577e238679c144fbec3862ca864ec2,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e40c0f2f5f6c5c546af6e402288bed10,
       type: 2}

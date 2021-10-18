@@ -8,7 +8,7 @@ public class ImprovedTeleportController : MonoBehaviour
 {
     public GameObject baseControllerGameObject;
     public GameObject teleportationGameObject;
-    public GameObject triggerGameObject;
+    public GameObject triggerGamobject;
 
     public InputActionReference teleportActivationReference;
     public InputActionReference triggerActivationReference;
@@ -29,7 +29,7 @@ public class ImprovedTeleportController : MonoBehaviour
 
     private void TeleportModeCancel(InputAction.CallbackContext obj) => Invoke("DeactivateTeleporter", .1f);
 
-    private void TriggerCancel(InputAction.CallbackContext obj) => Invoke("DeactivateTrigger", .1f*100000f);
+    private void TriggerCancel(InputAction.CallbackContext obj) => Invoke("DeactivateTrigger", .1f);
 
     void DeactivateTeleporter() => onTeleportCancel.Invoke();
 
