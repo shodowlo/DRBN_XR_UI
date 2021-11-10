@@ -1618,7 +1618,6 @@ GameObject:
   - component: {fileID: 54415158520820364}
   - component: {fileID: 136540889500306194}
   - component: {fileID: 7887027919476701137}
-  - component: {fileID: 8876600723702379034}
   m_Layer: 11
   m_Name: integrin_transmembrane_alpha_bric
   m_TagString: molecule
@@ -1768,20 +1767,6 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
---- !u!136 &8876600723702379034
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304632619811130}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 8.47
-  m_Height: 63.5
-  m_Direction: 2
-  m_Center: {x: 0, y: -6.82, z: 0}
 --- !u!1 &1314607617480006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2068,6 @@ GameObject:
   - component: {fileID: 54114408119125712}
   - component: {fileID: 136211550955617758}
   - component: {fileID: 5962791383354820017}
-  - component: {fileID: 4407027635350143515}
   m_Layer: 11
   m_Name: integrin_transmembrane_beta_bric
   m_TagString: molecule
@@ -2233,20 +2217,6 @@ MonoBehaviour:
   m_ThrowAngularVelocityScale: 1
   m_GravityOnDetach: 0
   m_RetainTransformParent: 1
---- !u!136 &4407027635350143515
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343814719976824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 6.05
-  m_Height: 65.51903
-  m_Direction: 2
-  m_Center: {x: 0, y: -3.0288992, z: 0}
 --- !u!1 &1360983740258086
 GameObject:
   m_ObjectHideFlags: 0

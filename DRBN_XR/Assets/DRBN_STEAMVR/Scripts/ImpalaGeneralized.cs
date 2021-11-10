@@ -87,8 +87,13 @@ public class ImpalaGeneralized : MonoBehaviour {
 		gotag = collider.gameObject.transform.GetComponentsInChildren<Transform> ();
 		var m = switchmod ();
 
-		Vector3 dn = new Vector3 (0f, -1f, 0f);
-		Vector3 up = new Vector3 (0f, 1f, 0f);
+		//Defined by the gameobject Z axis in generalized Impala
+		//Vector3 dn = new Vector3 (0f, -1f, 0f);
+		//Vector3 up = new Vector3 (0f, 1f, 0f);
+
+		Vector3 dn = collider.gameObject.transform.localRotation.eulerAngles;
+		Vector3 up = collider.gameObject.transform.localRotation.eulerAngles;
+		//Debug.Log(dn);
 
 		//if (collider.gameObject.tag=="helix"){
 		if (collider.gameObject.layer==11){

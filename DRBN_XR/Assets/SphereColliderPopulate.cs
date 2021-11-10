@@ -63,6 +63,8 @@ public class SphereColliderPopulate : MonoBehaviour
             ColliderOrientation.transform.position = VertList[i];
             ColliderOrientation.transform.localRotation = Quaternion.LookRotation(NormList[i]);
 
+            ColliderOrientation.AddComponent<ImpalaGeneralized>();
+
             //SphereCollider Sphere = PopulateGO.AddComponent<SphereCollider>();
             //Sphere.center = v;
             //Sphere.radius = 0.05f;
