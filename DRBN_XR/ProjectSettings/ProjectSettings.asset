@@ -165,6 +165,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.DefaultCompany.DRBN_STEAMVR2
+    Standalone: com.DefaultCompany.DRBN-STEAMVR2
   buildNumber:
     Standalone: 0
     VisionOS: 0
