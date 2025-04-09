@@ -1340,7 +1340,6 @@ GameObject:
   - component: {fileID: 4353184047597120170}
   - component: {fileID: 3647843343971193092}
   - component: {fileID: 5285683240684625500}
-  - component: {fileID: 7776610411619000335}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1451,19 +1450,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &7776610411619000335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6619483376153934509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff60891e480e354f873f57ee8b067ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderToToggle: {fileID: 8277830129511433113}
 --- !u!1 &7098954534282946173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8270855663187062767}
   - component: {fileID: 3718224901187835141}
+  - component: {fileID: 5541139544575256768}
   m_Layer: 0
   m_Name: XR Controller Left
   m_TagString: Untagged
@@ -2030,3 +2017,16 @@ MonoBehaviour:
     m_InputActionReference: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualValue: 0
+--- !u!114 &5541139544575256768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8758423527188247893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff60891e480e354f873f57ee8b067ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderToToggle: {fileID: 6619483376153934509}
