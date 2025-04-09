@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Nécessaire pour TMP
+using TMPro;
 
 public class SliderLogger : MonoBehaviour
 {
     public Slider slider;
-    public TextMeshProUGUI valueText; // Texte TMP optionnel
+    public TextMeshProUGUI valueText;
 
     public float minCustomValue = 1f;
     public float maxCustomValue = 100f;
@@ -15,7 +15,7 @@ public class SliderLogger : MonoBehaviour
         if (slider != null)
         {
             slider.onValueChanged.AddListener(OnSliderValueChanged);
-            OnSliderValueChanged(slider.value); // Affiche la valeur initiale
+            OnSliderValueChanged(slider.value);
         }
         else
         {
