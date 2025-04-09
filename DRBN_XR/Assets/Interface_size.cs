@@ -6,30 +6,27 @@ public class Interface_Size : MonoBehaviour
     public Transform targetObject;
     public Slider slider;
 
-    [Header("Échelle Z min et max")]
-    public float zMin = -5f;
-    public float zMax = 0.97f;
+    [Header("Échelle min et max")]
+    public float scaleMin = 0.01f;
+    public float scaleMax = 0.08f;
 
     void Start()
     {
         slider.minValue = 0f;
         slider.maxValue = 1f;
 
-        slider.value = 1f;
+        slider.value = 0.5f;
 
-        // Met à jour l’échelle Z à l’initialisation
-        UpdateZPosition(slider.value);
-
-        
+        // Met à jour l’échelle à l’initialisation
+        UpdateScale(slider.value);
 
         // Ajoute le listener
-        slider.onValueChanged.AddListener(UpdateZPosition);
+        slider.onValueChanged.AddListener(UpdateScale);
     }
 
-    public void UpdateZPosition(float value)
+    public void UpdateScale(float value)
     {
-        float z = Mathf.Lerp(-zMin, zMax, value);
-        Vector3 pos = targetObject.position;
-        targetObject.position = new Vector3(pos.x, pos.y, z);
+        float scale = Mathf.Lerp(scaleMin, scaleMax, value);
+        targetObject.localScale = new Vector3(scale, scale, scale);
     }
 }
