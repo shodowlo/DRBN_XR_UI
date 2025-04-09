@@ -9429,7 +9429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1579343357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12614,6 +12614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasToToggle: {fileID: 1579343356}
+  gameObjectsToToggle:
+  - {fileID: 1992468035}
+  gameObjectToToggle: {fileID: 834135493}
 --- !u!1 &1949880942
 GameObject:
   m_ObjectHideFlags: 0
