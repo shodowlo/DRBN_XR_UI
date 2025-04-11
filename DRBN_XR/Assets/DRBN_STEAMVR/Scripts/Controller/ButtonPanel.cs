@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 public class ButtonPanel : MonoBehaviour
 {
-    public List<Slider> slidersToHide;
-    public Slider sliderToShow;
+    public List<GameObject> objectsToHide;
+    public GameObject objectToShow;
 
-    public void ToggleSliders()
+    public void ToggleObjects()
     {
-        // Masquer les sliders à cacher
-        foreach (Slider s in slidersToHide)
+        // Masquer les objets à cacher
+        foreach (GameObject obj in objectsToHide)
         {
-            if (s != null)
-                s.gameObject.SetActive(false);
+            if (obj != null)
+                obj.SetActive(false);
         }
 
-        // Afficher le slider à montrer
-        if (sliderToShow != null)
-            sliderToShow.gameObject.SetActive(true);
+        // Afficher l'objet à montrer
+        if (objectToShow != null)
+            objectToShow.SetActive(true);
     }
 }
