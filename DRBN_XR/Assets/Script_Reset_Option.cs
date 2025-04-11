@@ -4,18 +4,25 @@ using UnityEngine.UI;
 public class Script_Reset_Option : MonoBehaviour
 {
     public Slider UI_size;
-    //public 
+    public float slider_Value;
+    public Interface_Size interfaceSize;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        UI_size.onValueChanged.AddListener(OnSliderValueChanged);
+    }
+    
+    public void ResetOption()
+    {
+        // save actual value
+        PlayerPrefs.SetFloat("SliderValue", slider_Value);
+
+        UI_size.value = slider_Value;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnSliderValueChanged(float value)
     {
-        
+        interfaceSize.UpdateScale(value);
     }
 }
