@@ -9,7 +9,7 @@ public class togglePanel : MonoBehaviour
     {
         if (canvas != null)
         {
-            canvas.enabled = !canvas.enabled;
+            canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
         }
     }
 }
