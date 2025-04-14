@@ -28,8 +28,7 @@ public class SliderLogger : MonoBehaviour
         float mapped = Mathf.Lerp(minCustomValue, maxCustomValue, (value - slider.minValue) / (slider.maxValue - slider.minValue));
         int intValue = Mathf.RoundToInt(mapped);
 
-        //du debug
-        //Debug.Log("Valeur du slider mappée : " + intValue);
+        Debug.Log("Valeur du slider mappée : " + intValue);
 
         if (valueText != null)
         {
