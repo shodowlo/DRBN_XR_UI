@@ -11,32 +11,30 @@ public class SimulationReset : MonoBehaviour
     {
         interfaceSize = slider.GetComponent<Interface_Size>();
 
-        slider.onValueChanged.AddListener(OnSliderValueChanged);
-
         // if save state present, reload it
         if (PlayerPrefs.HasKey("SliderValue"))
         {
             float sliderValue = PlayerPrefs.GetFloat("SliderValue");
-            slider.value = sliderValue;
+            interfaceSize.OnSliderReleased(sliderValue) ;
         }
-        else{
+        else
+        {
             float sliderValue = 0.25f;
-            slider.value = sliderValue;
+            interfaceSize.OnSliderReleased(sliderValue);
         }
     }
 
     public void ResetSimulation()
     {
-        // save actual value
+        // Save actual value
         float currentSliderValue = slider.value;
         PlayerPrefs.SetFloat("SliderValue", currentSliderValue);
 
+        // Prevent scale update
+        interfaceSize.shouldUpdateScale = false;
+
+        // Reload the scene
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-    }
-
-    void OnSliderValueChanged(float value)
-    {
-        interfaceSize.UpdateScale(value);
     }
 }
