@@ -6,6 +6,7 @@ public class SliderLogger : MonoBehaviour
 {
     public Slider slider;
     public TextMeshProUGUI valueText;
+    public TextMeshProUGUI valueTextPanel;
 
     public float minCustomValue = 1f;
     public float maxCustomValue = 100f;
@@ -33,6 +34,11 @@ public class SliderLogger : MonoBehaviour
         if (valueText != null)
         {
             valueText.text = intValue.ToString();
+        }
+
+        if (valueTextPanel != null)
+        {
+            valueTextPanel.text = intValue.ToString();
         }
     }
 }

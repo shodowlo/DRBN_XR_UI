@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ButtonPanel : MonoBehaviour
 {
     public List<GameObject> objectsToHide;
-    public GameObject objectToShow;
+    public List<GameObject> objectsToShow;
 
     public void ToggleObjects()
     {
@@ -16,8 +16,11 @@ public class ButtonPanel : MonoBehaviour
                 obj.SetActive(false);
         }
 
-        // Afficher l'objet à montrer
-        if (objectToShow != null)
-            objectToShow.SetActive(true);
+        // Afficher les objets à montrer
+        foreach (GameObject obj in objectsToShow)
+        {
+            if (obj != null)
+                obj.SetActive(true);
+        }
     }
 }
