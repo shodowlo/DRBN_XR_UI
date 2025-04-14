@@ -2787,7 +2787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4521b9fe2ece95e4cbb9edbd71973c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPanel: {fileID: 834135493}
+  firstPanel: {fileID: 1992468035}
   secondPanel: {fileID: 858329044}
 --- !u!1 &465397086
 GameObject:
