@@ -1,36 +1,36 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class Script_Reset_Option : MonoBehaviour
 {
     public Slider UI_size;
-    public float slider_Value;
     public Interface_Size interfaceSize;
     public TimeControl timeControl;
 
-
     void Start()
     {
-        UI_size.onValueChanged.AddListener(OnSliderValueChanged);
     }
-    
+
     public void ResetOption()
     {
-        // save actual value
-        PlayerPrefs.SetFloat("SliderValue", slider_Value);
+        // Set slider value to 0.25
+        float defaultSliderValue = 0.25f;
+        UI_size.value = defaultSliderValue;
 
-        UI_size.value = slider_Value;
+        // Save the current slider value
+        PlayerPrefs.SetFloat("SliderValue", defaultSliderValue);
 
+        // Reset the time scale to normal
         Time.timeScale = 1f;
+
+        // Allow scale update
+        interfaceSize.shouldUpdateScale = true;
+        interfaceSize.UpdateScale(UI_size.value);
 
         if (timeControl != null)
         {
             timeControl.UpdateButtonStates();
         }
-    }
-
-    void OnSliderValueChanged(float value)
-    {
-        interfaceSize.UpdateScale(value);
     }
 }
