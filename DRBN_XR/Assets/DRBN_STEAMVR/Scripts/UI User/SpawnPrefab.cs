@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class spawnPrefab : MonoBehaviour
+public class SpawnPrefab : MonoBehaviour
 {
-    public GameObject prefabToSpawn;
+    // public GameObject prefabToSpawn;
+
+    private GameObject prefabToSpawn;
     public Transform spawnPoint;
 
     private InputDevice targetDevice;
@@ -55,6 +57,11 @@ public class spawnPrefab : MonoBehaviour
         {
             Debug.LogWarning("Prefab ou point d'apparition non assigné.");
         }
+    }
+
+    public void SetTargetObject(GameObject obj)
+    {
+        prefabToSpawn = obj;
     }
 }
 
