@@ -134,6 +134,8 @@ public class DeletePrefab : MonoBehaviour
                     if (hitObject.CompareTag("molecule"))
                     {
                         Destroy(hitObject);
+                        Debug.Log("Objet avec le tag 'molecule' supprimé : " + hitObject.name);
+
                     }
                 }
             }
