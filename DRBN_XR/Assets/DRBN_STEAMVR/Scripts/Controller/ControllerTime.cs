@@ -6,13 +6,16 @@ public class ControllerTime : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
 
-    void Start()
-    {
-        InvokeRepeating("UpdateTime", 0f, 1f);
-    }
+    private string lastTime = "";
 
-    void UpdateTime()
+    void Update()
     {
-        timeText.text = DateTime.Now.ToString("HH:mm");
+        string currentTime = DateTime.Now.ToString("HH:mm");
+
+        if (currentTime != lastTime)
+        {
+            lastTime = currentTime;
+            timeText.text = currentTime;
+        }
     }
 }

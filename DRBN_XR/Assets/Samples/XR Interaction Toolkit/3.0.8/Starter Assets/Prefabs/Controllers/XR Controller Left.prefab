@@ -50,6 +50,9 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 212edfdffa502d642a835d6f1ada0a9c, type: 2}
   lineWidth: 0.005
+  targetObject: {fileID: 1262074482392263069}
+  minY: -65
+  maxY: 40
 --- !u!1 &241984350576077113
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +600,9 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 23b4b5f7ff1066545b9b587d434e5ab5, type: 2}
   lineWidth: 0.005
+  targetObject: {fileID: 1262074482392263069}
+  minY: -40
+  maxY: 65
 --- !u!1 &960010135501879710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,7 +3696,8 @@ MonoBehaviour:
   pressedColor: {r: 0.7529412, g: 0.22352941, b: 0.16862746, a: 1}
   objectsToHide: []
   objectsToShow:
-  - {fileID: 7377280444616414032}
+  - {fileID: 3903381608835485668}
+  - {fileID: 7039403685664181344}
   objectsToHideOnClose: []
 --- !u!1 &4881306093630212998
 GameObject:
@@ -4121,6 +4128,9 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 2c1570aedc86a53449850c56510f68f5, type: 2}
   lineWidth: 0.005
+  targetObject: {fileID: 1262074482392263069}
+  minY: -80
+  maxY: 10
 --- !u!1 &5949324291161553741
 GameObject:
   m_ObjectHideFlags: 0
@@ -4679,7 +4689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3823072636935199416
 Transform:
   m_ObjectHideFlags: 0
@@ -4799,7 +4809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5948286626544230661
 Transform:
   m_ObjectHideFlags: 0
@@ -5762,6 +5772,9 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: f669bf54e4d86634bb81f300dd7de103, type: 2}
   lineWidth: 0.005
+  targetObject: {fileID: 1262074482392263069}
+  minY: -12
+  maxY: 90
 --- !u!1 &8588173572174676547
 GameObject:
   m_ObjectHideFlags: 0
@@ -7096,6 +7109,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2266187040391613693}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1262074482392263069 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1076596797514818912, guid: 36a958c37263aa841a026631d17fc1a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2266187040391613693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2402481024930315888 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4477790619799171725, guid: 36a958c37263aa841a026631d17fc1a5,
@@ -7275,6 +7294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chronometer_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 6306018657624207355, guid: a1a680e64865b4d4ab03d93a0fc667dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7181086358031559473, guid: a1a680e64865b4d4ab03d93a0fc667dd,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -7353,6 +7377,12 @@ PrefabInstance:
 --- !u!4 &144314836478348078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7181086358031559473, guid: a1a680e64865b4d4ab03d93a0fc667dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7037123365274099743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3903381608835485668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6306018657624207355, guid: a1a680e64865b4d4ab03d93a0fc667dd,
     type: 3}
   m_PrefabInstance: {fileID: 7037123365274099743}
   m_PrefabAsset: {fileID: 0}
