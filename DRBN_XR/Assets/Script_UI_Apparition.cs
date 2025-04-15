@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Script_UI_Apparition : MonoBehaviour
 {
-    public GameObject canvasToToggle;  // Le Canvas à afficher/masquer
-    public List<GameObject> gameObjectsToToggle;  // Liste des GameObjects à désactiver
-    public GameObject gameObjectToToggle;  // Le GameObject spécifique à activer
+    public GameObject canvasToToggle;
+    public List<GameObject> gameObjectsToHide;
+    public GameObject gameObjectToShow;
 
     private InputDevice targetDevice;
     private bool previousButtonState = false;
@@ -34,7 +34,6 @@ public class Script_UI_Apparition : MonoBehaviour
 
     void ToggleCanvas()
     {
-        // Change l'état du canvas
         if (canvasToToggle != null)
         {
             canvasToToggle.SetActive(!canvasToToggle.activeSelf);
@@ -43,11 +42,10 @@ public class Script_UI_Apparition : MonoBehaviour
 
     void ToggleGameObjects()
     {
-        // Si le canvas est actif, on gère les GameObjects
         if (canvasToToggle != null && canvasToToggle.activeSelf)
         {
-            // Désactive tous les GameObjects dans la liste
-            foreach (var obj in gameObjectsToToggle)
+            // Hide all the gameobjects who need it
+            foreach (var obj in gameObjectsToHide)
             {
                 if (obj != null)
                 {
@@ -55,10 +53,10 @@ public class Script_UI_Apparition : MonoBehaviour
                 }
             }
 
-            // Si le gameObjectToToggle est désactivé, on l'active
-            if (gameObjectToToggle != null && !gameObjectToToggle.activeSelf)
+            // if not active, activate
+            if (gameObjectToShow != null && !gameObjectToShow.activeSelf)
             {
-                gameObjectToToggle.SetActive(true);
+                gameObjectToShow.SetActive(true);
             }
         }
     }
