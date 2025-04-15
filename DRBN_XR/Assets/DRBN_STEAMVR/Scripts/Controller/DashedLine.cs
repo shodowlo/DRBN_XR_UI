@@ -9,19 +9,39 @@ public class DashedLine : MonoBehaviour
     public Material dashMaterial;
     public float lineWidth = 0.01f;
 
+    public GameObject targetObject;
+    public float minY = 0f;
+    public float maxY = 10f;
+
     private Vector3 lastStart;
     private Vector3 lastEnd;
 
     void Update()
     {
-        // Ne redessine que si les positions ont changé (optimisation)
-        if (startPoint.position != lastStart || endPoint.position != lastEnd)
+        float targetY = targetObject.transform.localPosition.y;
+
+        // Vérifie si targetY est dans l'intervalle [minY, maxY]
+        if (targetY >= minY && targetY <= maxY)
         {
-            lastStart = startPoint.position;
-            lastEnd = endPoint.position;
-            Redraw();
+            if (startPoint.position != lastStart || endPoint.position != lastEnd)
+            {
+                lastStart = startPoint.position;
+                lastEnd = endPoint.position;
+                Redraw();
+            }
         }
-    }
+        else
+        {
+            // Supprime les dashes si la condition n'est plus remplie
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+    }   
 
     private void Redraw()
     {
