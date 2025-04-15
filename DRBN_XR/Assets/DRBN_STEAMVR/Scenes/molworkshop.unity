@@ -1651,6 +1651,7 @@ GameObject:
   - component: {fileID: 289397547}
   - component: {fileID: 289397546}
   - component: {fileID: 289397545}
+  - component: {fileID: 289397548}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -1734,15 +1735,15 @@ MonoBehaviour:
     - m_Text: Collagen IV
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Integrin
-      m_Image: {fileID: 0}
-      m_Color: {r: 0.87169814, g: 0.87169814, b: 0.87169814, a: 1}
     - m_Text: Laminin
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
+    - m_Text: Integrin
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Nidogen
       m_Image: {fileID: 0}
-      m_Color: {r: 0.8705883, g: 0.8705883, b: 0.8705883, a: 1}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Perlecan
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1800,6 +1801,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289397543}
   m_CullTransparentMesh: 1
+--- !u!114 &289397548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289397543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85c598bfa560b14c99416095fb742f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 289397545}
+  targetObjects:
+  - {fileID: 1139134237179190, guid: 1044da26bbc99684f92e4f0baa8eeaf1, type: 3}
+  - {fileID: 8996431935918390605, guid: 62de4d14663498843bd64afa549c7fb0, type: 3}
+  - {fileID: 1049614508444186, guid: e5a5e6d52608b9945a86a99282ad0809, type: 3}
+  - {fileID: 3011891873972996688, guid: c39cb2ee209a0664ab7bfada76bcbc7b, type: 3}
+  - {fileID: 3562581995336005509, guid: 95a6f110a370f824bb034b665134617a, type: 3}
+  anotherScript: {fileID: 1946228059}
 --- !u!1 &292664214
 GameObject:
   m_ObjectHideFlags: 0
@@ -9416,12 +9437,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 985166751}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1100499541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1139134237179190, guid: 1044da26bbc99684f92e4f0baa8eeaf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 649893333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1116991665
 GameObject:
   m_ObjectHideFlags: 0
@@ -13989,7 +14004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1579343357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17209,7 +17224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1806809525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18284,7 +18299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b19da4f2e19c40488604f83572e3777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 1100499541}
   spawnPoint: {fileID: 1804561978}
 --- !u!114 &1946228061
 MonoBehaviour:
