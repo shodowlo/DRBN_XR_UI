@@ -1,20 +1,34 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Navigation_Menu : MonoBehaviour
+public class NavigationMenu : MonoBehaviour
 {
     public GameObject firstPanel;
     public GameObject secondPanel;
 
-    public void PrintSecondPanel()               // Show the option menu
+    public void PrintSecondPanel()               // Show the second menu
     {
-        secondPanel.SetActive(true);
-        firstPanel.SetActive(false);
+        if (secondPanel != null)
+        {
+            secondPanel.SetActive(true);
+        }
+
+        if (firstPanel != null)
+        {
+            firstPanel.SetActive(false);
+        }
     }
 
     public void BackToFirstPanel()               // return to the first panel
     {
-        secondPanel.SetActive(false);
-        firstPanel.SetActive(true);
+        if (secondPanel != null)
+        {
+            secondPanel.SetActive(false);
+        }
+
+        if (firstPanel != null)
+        {
+            firstPanel.SetActive(true);
+        }
     }
 }

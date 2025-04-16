@@ -42,7 +42,7 @@ public class DeletePrefab : MonoBehaviour
         }
 
         bool isPressed = false;
-        if (rightController.TryGetFeatureValue(CommonUsages.primaryButton, out isPressed) && isPressed && !previousButtonState)
+        if (rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out isPressed) && isPressed && !previousButtonState)
         {
             DeleteGrabbedObject();
         }
