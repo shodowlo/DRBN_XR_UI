@@ -5,7 +5,6 @@ public class ToggleScripts: MonoBehaviour
 {
     public MonoBehaviour[] scriptsToEnable;    // Liste de scripts à activer
     public MonoBehaviour[] scriptsToDeactivate; // Liste de scripts à désactiver
-    public Button[] buttonsToEnable;           // Liste de boutons à activer
 
     private Button thisButton;                 // Référence au bouton actuel
 
@@ -30,9 +29,6 @@ public class ToggleScripts: MonoBehaviour
 
         Togglescripts(scriptsToDeactivate, false);
 
-        thisButton.interactable = false;
-
-        EnableOtherButtons();
     }
 
     void Togglescripts(MonoBehaviour[] scripts, bool enable)
@@ -49,17 +45,4 @@ public class ToggleScripts: MonoBehaviour
         }
     }
 
-    void EnableOtherButtons()
-    {
-        if (buttonsToEnable != null)
-        {
-            foreach (var button in buttonsToEnable)
-            {
-                if (button != null)
-                {
-                    button.interactable = true;
-                }
-            }
-        }
-    }
 }

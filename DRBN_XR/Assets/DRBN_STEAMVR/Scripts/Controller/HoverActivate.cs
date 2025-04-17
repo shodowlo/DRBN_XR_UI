@@ -11,6 +11,8 @@ public class HoverActivate : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private float hoverTimer = 0f;
     private bool objectsEnabled = false;
 
+    private bool isForcedEnabled = false;
+
     void Update()
     {
         if (isHovering)
@@ -47,10 +49,21 @@ public class HoverActivate : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void DisableObjects()
     {
+        if(isForcedEnabled) return;
         foreach (GameObject obj in objectsToToggle)
         {
             obj.SetActive(false);
         }
         objectsEnabled = false;
+    }
+
+    public void ToogleIsForcedEnabled()
+    {
+        isForcedEnabled = !isForcedEnabled;
+    }
+
+    public void DisableIsForcedEnabled()
+    {
+        isForcedEnabled = false;
     }
 }
