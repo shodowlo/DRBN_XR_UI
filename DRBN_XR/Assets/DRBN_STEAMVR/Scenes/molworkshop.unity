@@ -7771,6 +7771,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.030000001
       objectReference: {fileID: 0}
+    - target: {fileID: 1074501019814755816, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: anotherScript
+      value: 
+      objectReference: {fileID: 1946228059}
     - target: {fileID: 1192141914112530932, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -8641,6 +8646,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4785885987017673825, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: 'scriptsToEnable.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1946228059}
+    - target: {fileID: 4785885987017673825, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: 'scriptsToDeactivate.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1946228061}
     - target: {fileID: 4923581748716403836, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -19157,7 +19172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2129813864
 MonoBehaviour:
   m_ObjectHideFlags: 0
