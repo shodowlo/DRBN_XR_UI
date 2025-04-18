@@ -1,16 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using TMPro;
+using UnityEngine.UI;
 
 public class SpawnPrefab : MonoBehaviour
 {
-    // public GameObject prefabToSpawn;
-
     private GameObject prefabToSpawn;
     public Transform spawnPoint;
 
+    public GameObject labelUIPrefab;       // Le prefab avec TextMeshProUGUI
+    public GameObject uiCanvas;                // Le canvas (pas obligatoire ici, juste pour contexte)
+    public RectTransform scrollViewContent; // 👉 Le content de la ScrollView
+
     private InputDevice targetDevice;
     private bool previousButtonState = false;
+
+    private float labelHeight = 28.7f; // Hauteur d’un label (en unités UI)
 
     void Start()
     {
@@ -29,15 +35,15 @@ public class SpawnPrefab : MonoBehaviour
 
     void Update()
     {
-        if (!targetDevice.isValid)
-        {
-            // Rechercher à nouveau si le contrôleur a été déconnecté
-            Start();
-            return;
-        }
+        //if (!targetDevice.isValid)
+        //{
+        //    Start();
+        //    return;
+        //}
 
         bool isPressed = false;
-        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out isPressed)) // Touche A sur Oculus/Meta
+
+        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out isPressed))
         {
             if (isPressed && !previousButtonState)
             {
@@ -45,13 +51,19 @@ public class SpawnPrefab : MonoBehaviour
             }
             previousButtonState = isPressed;
         }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Spawn();
+        }
     }
 
     void Spawn()
     {
         if (prefabToSpawn != null && spawnPoint != null)
         {
-            Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+            GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+            SpawnUILabel(prefabToSpawn.name, spawnedObject);
         }
         else
         {
@@ -59,8 +71,44 @@ public class SpawnPrefab : MonoBehaviour
         }
     }
 
+    void SpawnUILabel(string labelText, GameObject associatedObject)
+    {
+        if (labelUIPrefab != null && scrollViewContent != null)
+        {
+            GameObject labelUI = Instantiate(labelUIPrefab, uiCanvas.transform); // Important : scrollViewContent ici
+            TextMeshProUGUI text = labelUI.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.text = labelText;
+            }
+
+            // Chercher le bouton dans l’UI
+            Button deleteButton = labelUI.GetComponentInChildren<Button>();
+            if (deleteButton != null)
+            {
+                DeleteSpawnedObjectButton deleteScript = deleteButton.gameObject.AddComponent<DeleteSpawnedObjectButton>();
+                deleteScript.SetTarget(associatedObject);
+
+                // Connecter le bouton au script
+                deleteButton.onClick.AddListener(deleteScript.DeleteObject);
+            }
+
+            // Augmenter la taille du content (en hauteur)
+            Vector2 size = scrollViewContent.sizeDelta;
+            size.y += labelHeight;
+            scrollViewContent.sizeDelta = size;
+        }
+        else
+        {
+            Debug.LogWarning("Label UI Prefab ou Content de ScrollView non assigné.");
+        }
+    }
+
+
     public void SetTargetObject(GameObject obj)
     {
         prefabToSpawn = obj;
     }
 }
+
+
