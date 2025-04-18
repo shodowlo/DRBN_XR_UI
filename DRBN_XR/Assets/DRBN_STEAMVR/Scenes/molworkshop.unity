@@ -14846,7 +14846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1579343357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17897,6 +17897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835918976}
   - component: {fileID: 1835918977}
+  - component: {fileID: 1835918978}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -17947,6 +17948,22 @@ MonoBehaviour:
   m_Spacing: {x: 25, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 4
+--- !u!114 &1835918978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835918975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66100a20897c68b41b103c45d62bbde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmlFilePath: XML/PrefabList
+  imageContainer: {fileID: 1835918975}
+  imageTextPrefab: {fileID: 9115486989321500186, guid: d1f0f6bf9b298c94c93610b5ce1f463a,
+    type: 3}
 --- !u!1 &1881114549
 GameObject:
   m_ObjectHideFlags: 0
