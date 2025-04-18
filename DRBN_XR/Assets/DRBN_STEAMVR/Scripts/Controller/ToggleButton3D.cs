@@ -25,7 +25,6 @@ public class ToggleButton3D : MonoBehaviour
 
     public List<GameObject> objectsToHide;
     public List<GameObject> objectsToShow;
-    public List<GameObject> objectsToHideOnClose;
 
     void Start()
     {
@@ -91,23 +90,18 @@ public class ToggleButton3D : MonoBehaviour
 
     public void ToggleObjects()
     {
-        foreach (GameObject obj in objectsToHide)
-        {
-            if (obj != null)
-                obj.SetActive(false);
-        }
-
-        foreach (GameObject obj in objectsToShow)
-        {
-            if (obj != null)
-                obj.SetActive(isPressed);
-        }
-
         if(!isPressed){
-            foreach (GameObject obj in objectsToHideOnClose)
+            foreach (GameObject obj in objectsToHide)
             {
                 if (obj != null)
                     obj.SetActive(false);
+            }
+        }
+        else{
+            foreach (GameObject obj in objectsToShow)
+            {
+                if (obj != null)
+                    obj.SetActive(true);
             }
         }
     }
