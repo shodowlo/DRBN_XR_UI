@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ToggleMenuAnimation : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class ToggleMenuAnimation : MonoBehaviour
     public Transform endTransform;             // Position finale du menu
     public GameObject menuCanvas;              // Le canvas à animer
     public float animationDuration = 0.5f;     // Durée de l'animation
+
+    public List<GameObject> objectsToHideOnClose;
+    public MonoBehaviour[] scriptsToDeactivateOnClose;
 
     private bool isAnimating = false;
     private bool isMenuOpen = false;
@@ -71,7 +75,28 @@ public class ToggleMenuAnimation : MonoBehaviour
         isAnimating = false;
         isMenuOpen = opening;
 
-        if (!opening)
+        if (!opening){
             menuCanvas.SetActive(false);
+            foreach (GameObject obj in objectsToHideOnClose)
+            {
+                if (obj != null)
+                    obj.SetActive(false);
+            }
+            Togglescripts(scriptsToDeactivateOnClose, false);
+        }
+    }
+
+    void Togglescripts(MonoBehaviour[] scripts, bool enable)
+    {
+        if (scripts != null)
+        {
+            foreach (var script in scripts)
+            {
+                if (script != null)
+                {
+                    script.enabled = enable;
+                }
+            }
+        }
     }
 }
