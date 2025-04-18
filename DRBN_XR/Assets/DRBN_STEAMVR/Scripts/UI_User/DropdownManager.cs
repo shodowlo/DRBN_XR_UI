@@ -1,30 +1,45 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro; // Utilisez cette ligne si vous utilisez TextMeshPro
+using TMPro;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DropdownManager : MonoBehaviour
 {
-    public static DropdownManager Instance { get; private set; }
-    public TMP_Dropdown dropdown; // Référence au composant TMP_Dropdown
+    public TMP_Dropdown dropdown; // Référence au DropdownTMP
+    public GameObject toggleObject; // Référence au GameObject à surveiller
+    public string optionName; // Nom de l'option à ajouter/retirer
 
-    void Awake()
+    void Update()
     {
-        if (Instance == null)
+        // Vérifiez l'état du GameObject et mettez à jour le dropdown en conséquence
+        if (toggleObject != null && dropdown != null && !string.IsNullOrEmpty(optionName))
         {
-            Instance = this;
+            if (toggleObject.activeSelf)
+            {
+                // Ajouter l'option au dropdown si elle n'existe pas déjà
+                if (!dropdown.options.Any(option => option.text == optionName))
+                {
+                    dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(optionName) });
+                    Debug.Log("DropdownManager: Added item to dropdown: " + optionName);
+                }
+            }
+            else
+            {
+                // Retirer l'option du dropdown si elle existe
+                var options = dropdown.options.ToList();
+                var optionToRemove = options.FirstOrDefault(option => option.text == optionName);
+                if (optionToRemove != null)
+                {
+                    options.Remove(optionToRemove);
+                    dropdown.ClearOptions();
+                    dropdown.AddOptions(options);
+                    Debug.Log("DropdownManager: Removed item from dropdown: " + optionName);
+                }
+            }
         }
         else
         {
-            Destroy(gameObject);
-        }
-    }
-
-    public void ShowDropdownItem(string itemName)
-    {
-        if (dropdown != null)
-        {
-            dropdown.captionText.text = itemName;
-            dropdown.Show();
+            Debug.LogWarning("DropdownManager: toggleObject, dropdown, or optionName is not set.");
         }
     }
 }
