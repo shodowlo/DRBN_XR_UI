@@ -31,4 +31,25 @@ public class NavigationMenu : MonoBehaviour
             firstPanel.SetActive(true);
         }
     }
+
+    public void SwitchImage()
+    {
+        if (firstPanel != null && secondPanel != null)
+        {
+            if (firstPanel.activeSelf)
+            {
+                firstPanel.SetActive(false);
+                secondPanel.SetActive(true);
+            }
+            else
+            {
+                firstPanel.SetActive(true);
+                secondPanel.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("NavigationMenu: firstPanel or secondPanel is not assigned.");
+        }
+    }
 }
