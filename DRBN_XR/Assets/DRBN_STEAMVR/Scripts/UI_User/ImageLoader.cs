@@ -1,134 +1,138 @@
 // using UnityEngine;
 // using UnityEngine.UI;
-// using TMPro; // Utilisez cette ligne si vous utilisez TextMeshPro
+// using TMPro;
 // using System.Xml;
 // using System.Collections.Generic;
 // using System.Linq;
 
-// public class PrefabLoader : MonoBehaviour
+// public class ImageLoader : MonoBehaviour
 // {
-//     public string xmlFilePath; // Chemin vers votre fichier XML
-//     public GameObject prefabContainer; // Conteneur pour les prefabs
+//     public string xmlFilePath; //= "XML/PrefabList"; // Chemin vers votre fichier XML dans le dossier Resources
+//     public GameObject imageContainer; // Conteneur pour les images
+//     public GameObject imageTextPrefab; // Prefab pour l'image et le texte
 
 //     void Start()
 //     {
-//         Debug.Log("PrefabLoader: Start method called.");
-//         LoadPrefabsFromXML();
+//         LoadImagesFromXML();
 //     }
 
-//     void LoadPrefabsFromXML()
+//     void LoadImagesFromXML()
 //     {
-//         Debug.Log("PrefabLoader: LoadPrefabsFromXML method called.");
+//         TextAsset xmlFile = Resources.Load<TextAsset>(xmlFilePath);
+//         if (xmlFile == null)
+//         {
+//             Debug.LogError("ImageLoader: XML file not found at path: " + xmlFilePath);
+//             return;
+//         }
+
 //         XmlDocument xmlDoc = new XmlDocument();
 //         try
 //         {
-//             xmlDoc.Load(xmlFilePath);
-//             Debug.Log("PrefabLoader: XML file loaded successfully.");
+//             xmlDoc.LoadXml(xmlFile.text);
 //         }
 //         catch (System.Exception e)
 //         {
-//             Debug.LogError("PrefabLoader: Error loading XML file: " + e.Message);
+//             Debug.LogError("ImageLoader: Error loading XML file: " + e.Message);
 //             return;
 //         }
 
-//         XmlNodeList prefabNodes = xmlDoc.SelectNodes("Prefabs/Prefab");
-//         if (prefabNodes == null || prefabNodes.Count == 0)
+//         XmlNodeList imageNodes = xmlDoc.SelectNodes("Images/Image");
+//         if (imageNodes == null || imageNodes.Count == 0)
 //         {
-//             Debug.LogWarning("PrefabLoader: No prefab nodes found in XML file.");
+//             Debug.LogWarning("ImageLoader: No image nodes found in XML file.");
 //             return;
 //         }
 
-//         Debug.Log("PrefabLoader: Found " + prefabNodes.Count + " prefab nodes.");
 
-//         List<GameObject> loadedPrefabs = new List<GameObject>();
-
-//         foreach (XmlNode prefabNode in prefabNodes)
+//         List<(Sprite image, string name)> loadedImages = new List<(Sprite, string)>();
+        
+//         foreach (XmlNode imageNode in imageNodes)
 //         {
-//             string prefabName = prefabNode.Attributes["name"]?.Value;
-//             string prefabPath = prefabNode.Attributes["path"]?.Value;
+//             string imageName = imageNode.Attributes["name"]?.Value;
+//             string imagePath = imageNode.Attributes["path"]?.Value;
 
-//             if (string.IsNullOrEmpty(prefabName) || string.IsNullOrEmpty(prefabPath))
+//             if (string.IsNullOrEmpty(imageName) || string.IsNullOrEmpty(imagePath))
 //             {
-//                 Debug.LogWarning("PrefabLoader: Invalid prefab node in XML file.");
+//                 Debug.LogWarning("ImageLoader: Invalid image node in XML file.");
 //                 continue;
 //             }
 
-//             GameObject prefab = Resources.Load<GameObject>(prefabPath);
-//             if (prefab != null)
+//             Sprite image = Resources.Load<Sprite>(imagePath);
+//             if (image != null)
 //             {
-//                 loadedPrefabs.Add(prefab);
-//                 Debug.Log("PrefabLoader: Loaded prefab: " + prefabName);
+//                 loadedImages.Add((image, imageName));
 //             }
 //             else
 //             {
-//                 Debug.LogWarning("PrefabLoader: Prefab not found at path: " + prefabPath);
+//                 Debug.LogWarning("ImageLoader: Image not found at path: " + imagePath);
 //             }
 //         }
 
-//         // Trier les prefabs par nom
-//         loadedPrefabs = loadedPrefabs.OrderBy(prefab => prefab.name).ToList();
-//         Debug.Log("PrefabLoader: Prefabs sorted.");
+//         // Trier les images par nom
+//         loadedImages = loadedImages.OrderBy(image => image.name).ToList();
 
-//         // Vérifier les prefabs chargés
-//         foreach (var prefab in loadedPrefabs)
-//         {
-//             Debug.Log("PrefabLoader: Prefab to display: " + prefab.name);
-//         }
-
-//         DisplayPrefabs(loadedPrefabs);
+//         DisplayImages(loadedImages);
 //     }
 
-//     void DisplayPrefabs(List<GameObject> prefabs)
+//     void DisplayImages(List<(Sprite image, string name)> images)
 //     {
-//         Debug.Log("PrefabLoader: DisplayPrefabs method called.");
-//         if (prefabs.Count == 0)
+//         if (images.Count == 0)
 //         {
-//             Debug.LogWarning("PrefabLoader: No prefabs loaded.");
+//             Debug.LogWarning("ImageLoader: No images loaded.");
 //             return;
 //         }
 
-//         GridLayoutGroup gridLayout = prefabContainer.GetComponent<GridLayoutGroup>();
+//         GridLayoutGroup gridLayout = imageContainer.GetComponent<GridLayoutGroup>();
 //         if (gridLayout == null)
 //         {
-//             gridLayout = prefabContainer.AddComponent<GridLayoutGroup>();
+//             gridLayout = imageContainer.AddComponent<GridLayoutGroup>();
 //         }
 
 //         gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
 //         gridLayout.constraintCount = 4;
 
-//         foreach (GameObject prefab in prefabs)
+//         foreach (var (image, name) in images)
 //         {
-//             GameObject instance = Instantiate(prefab, prefabContainer.transform);
-//             Debug.Log("PrefabLoader: Instantiated prefab: " + prefab.name);
+//             // Instancier le prefab
+//             GameObject instance = Instantiate(imageTextPrefab, imageContainer.transform);
+//             Image imageComponent = instance.GetComponent<Image>();
+//             TextMeshProUGUI textComponent = instance.GetComponentInChildren<TextMeshProUGUI>();
 
-//             // Si vous avez besoin d'ajouter un composant Text ou TextMeshProUGUI pour afficher le nom du prefab
-//             TextMeshProUGUI prefabNameText = instance.GetComponentInChildren<TextMeshProUGUI>();
-//             if (prefabNameText != null)
+//             if (imageComponent != null)
 //             {
-//                 prefabNameText.text = prefab.name;
-//                 Debug.Log("PrefabLoader: Displayed prefab: " + prefab.name);
+//                 imageComponent.sprite = image;
+//                 imageComponent.preserveAspect = true; // Pour conserver le ratio d'aspect de l'image
 //             }
 //             else
 //             {
-//                 Debug.LogWarning("PrefabLoader: TextMeshProUGUI component not found in prefab instance.");
+//                 Debug.LogWarning("ImageLoader: Image component not found in prefab instance.");
+//             }
+
+//             if (textComponent != null)
+//             {
+//                 textComponent.text = name; // Afficher le nom de l'image dans le texte
+//             }
+//             else
+//             {
+//                 Debug.LogWarning("ImageLoader: TextMeshProUGUI component not found in prefab instance.");
 //             }
 //         }
 
 //         // Ajoutez une ScrollRect si nécessaire
-//         ScrollRect scrollRect = prefabContainer.GetComponentInParent<ScrollRect>();
+//         ScrollRect scrollRect = imageContainer.GetComponentInParent<ScrollRect>();
 //         if (scrollRect == null)
 //         {
-//             scrollRect = prefabContainer.AddComponent<ScrollRect>();
-//             scrollRect.content = prefabContainer.GetComponent<RectTransform>();
-//             scrollRect.viewport = prefabContainer.transform.parent.GetComponent<RectTransform>();
+//             scrollRect = imageContainer.AddComponent<ScrollRect>();
+//             scrollRect.content = imageContainer.GetComponent<RectTransform>();
+//             scrollRect.viewport = imageContainer.transform.parent.GetComponent<RectTransform>();
 //             scrollRect.horizontal = false;
 //             scrollRect.vertical = true;
 //             scrollRect.movementType = ScrollRect.MovementType.Clamped;
 //             scrollRect.inertia = false;
-//             Debug.Log("PrefabLoader: ScrollRect added.");
 //         }
 //     }
 // }
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -141,6 +145,7 @@ public class ImageLoader : MonoBehaviour
     public string xmlFilePath = "XML/PrefabList"; // Chemin vers votre fichier XML dans le dossier Resources
     public GameObject imageContainer; // Conteneur pour les images
     public GameObject imageTextPrefab; // Prefab pour l'image et le texte
+    public TMP_Dropdown dropdown; // Référence au DropdownTMP
 
     void Start()
     {
@@ -181,8 +186,7 @@ public class ImageLoader : MonoBehaviour
         Debug.Log("ImageLoader: Found " + imageNodes.Count + " image nodes.");
 
         List<(Sprite image, string name)> loadedImages = new List<(Sprite, string)>();
-        
-        Debug.Log("ImageLoader: Found " + imageNodes.Item(0) + " image nodes.");
+
         foreach (XmlNode imageNode in imageNodes)
         {
             string imageName = imageNode.Attributes["name"]?.Value;
@@ -237,6 +241,7 @@ public class ImageLoader : MonoBehaviour
             GameObject instance = Instantiate(imageTextPrefab, imageContainer.transform);
             Image imageComponent = instance.GetComponent<Image>();
             TextMeshProUGUI textComponent = instance.GetComponentInChildren<TextMeshProUGUI>();
+            ImageClickHandler clickHandler = instance.GetComponent<ImageClickHandler>();
 
             if (imageComponent != null)
             {
@@ -257,6 +262,17 @@ public class ImageLoader : MonoBehaviour
             else
             {
                 Debug.LogWarning("ImageLoader: TextMeshProUGUI component not found in prefab instance.");
+            }
+
+            if (clickHandler != null)
+            {
+                clickHandler.imageName = name; // Assigner le nom de l'image
+                clickHandler.dropdown = dropdown; // Assigner la référence au DropdownTMP
+                Debug.Log("ImageLoader: Set click handler for: " + name);
+            }
+            else
+            {
+                Debug.LogWarning("ImageLoader: ImageClickHandler component not found in prefab instance.");
             }
 
             Debug.Log("ImageLoader: Displayed image: " + name);
