@@ -71,7 +71,7 @@ public class SpawnPrefab : MonoBehaviour
         }
     }
 
-    void SpawnUILabel(string labelText, GameObject associatedObject)
+    void SpawnUILabel(string labelText, GameObject spawnedObject)
     {
         if (labelUIPrefab != null && scrollViewContent != null)
         {
@@ -86,11 +86,19 @@ public class SpawnPrefab : MonoBehaviour
             Button deleteButton = labelUI.GetComponentInChildren<Button>();
             if (deleteButton != null)
             {
-                DeleteSpawnedObjectButton deleteScript = deleteButton.gameObject.AddComponent<DeleteSpawnedObjectButton>();
-                deleteScript.SetTarget(associatedObject);
+                deleteButton.onClick.AddListener(() =>
+                {
+                    // Supprimer la molécule
+                    Destroy(spawnedObject);
 
-                // Connecter le bouton au script
-                deleteButton.onClick.AddListener(deleteScript.DeleteObject);
+                    // Supprimer l'élément UI
+                    Destroy(labelUI);
+
+                    // Réduire la hauteur du content
+                    Vector2 size = scrollViewContent.sizeDelta;
+                    size.y -= labelHeight;
+                    scrollViewContent.sizeDelta = size;
+                });
             }
 
             // Augmenter la taille du content (en hauteur)
