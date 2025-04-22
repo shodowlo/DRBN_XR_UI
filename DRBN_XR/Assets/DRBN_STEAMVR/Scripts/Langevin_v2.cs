@@ -23,7 +23,7 @@ public class Langevin_v2 : MonoBehaviour {
     public static float sigmaf = (float)sigma;
     public static float frictionf = (float)friction;
     */
-    public static double temp = 0.0f;
+    public static double temp = 300.0f;
     public static double kB = 1.38f * Math.Pow(10.0f, 23.0f);
 	public static double viscosity = 6.6e-3; //Pa.s-1 =6.6cPoise
     public static double Ma = (13e6f * 1.7f * Math.Pow(10.0f, -1f)) / 2.0f;
