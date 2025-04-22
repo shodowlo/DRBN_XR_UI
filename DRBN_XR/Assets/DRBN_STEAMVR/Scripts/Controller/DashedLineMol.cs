@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashedLine : MonoBehaviour
+public class DashedLineMol : MonoBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
@@ -10,16 +10,24 @@ public class DashedLine : MonoBehaviour
     public float lineWidth = 0.01f;
 
     public GameObject targetObject;
-    public float minY = 0f;
+    public float minY = -115f;
     public float maxY = 115f;
 
+    
     private Vector3 lastStart;
     private Vector3 lastEnd;
 
-
+    void Start()
+    {
+        while (startPoint.childCount > 0)
+        {
+            startPoint = startPoint.GetChild(0);
+        }
+    }
     void Update()
     {
         float targetY = targetObject.transform.parent.InverseTransformPoint(endPoint.transform.position).y;
+        Debug.Log("targetY: " + targetY + " minY: " + minY + " maxY: " + maxY);
 
         // Vérifie si targetY est dans l'intervalle [minY, maxY]
         if (targetY >= minY && targetY <= maxY)
