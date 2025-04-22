@@ -2535,9 +2535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be0205c8cae2294c9ddd15260c86f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moleculePrefab: {fileID: 3011891873972996688, guid: c39cb2ee209a0664ab7bfada76bcbc7b,
-    type: 3}
-  targetImage: {fileID: 366306400}
   previewPosition: {x: 1000, y: 0, z: 1000}
   textureSize: 1024
   debugDontDestroy: 0
@@ -2978,6 +2975,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395428384}
   m_CullTransparentMesh: 1
+--- !u!1 &402731969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402731971}
+  - component: {fileID: 402731970}
+  m_Layer: 0
+  m_Name: PhotoLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &402731970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402731969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be0205c8cae2294c9ddd15260c86f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previewPosition: {x: 1000, y: 0, z: 1000}
+  textureSize: 1024
+  debugDontDestroy: 0
+--- !u!4 &402731971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402731969}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &402834331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4408,7 +4452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &479402081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8088,9 +8132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be0205c8cae2294c9ddd15260c86f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moleculePrefab: {fileID: 3562581995336005509, guid: 95a6f110a370f824bb034b665134617a,
-    type: 3}
-  targetImage: {fileID: 943685725}
   previewPosition: {x: 1000, y: 0, z: 1000}
   textureSize: 1024
   debugDontDestroy: 0
@@ -17130,9 +17171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be0205c8cae2294c9ddd15260c86f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moleculePrefab: {fileID: 1139134237179190, guid: 1044da26bbc99684f92e4f0baa8eeaf1,
-    type: 3}
-  targetImage: {fileID: 1480479344}
   previewPosition: {x: 1000, y: 0, z: 1000}
   textureSize: 1024
   debugDontDestroy: 0
@@ -17432,9 +17470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be0205c8cae2294c9ddd15260c86f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moleculePrefab: {fileID: 8996431935918390605, guid: 62de4d14663498843bd64afa549c7fb0,
-    type: 3}
-  targetImage: {fileID: 1490618903}
   previewPosition: {x: 1000, y: 0, z: 1000}
   textureSize: 1024
   debugDontDestroy: 0
@@ -22986,7 +23021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2129813864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23231,6 +23266,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1023456279}
   - {fileID: 1579343357}
+  - {fileID: 402731971}
   - {fileID: 54275580}
   - {fileID: 382176781}
   - {fileID: 1023644797}

@@ -1,4 +1,7 @@
 <Images>
-    <Image name="Persona 5" path="Images/Test"/>
-    <Image name="tamer" path="Images/ducato"/>
+    <Image name="Collagen" path="Images/Molecules/Collagen" prefab="Prefabs/iCollagen"/>
+    <Image name="Nidogen" path="Images/Molecules/Nidogen" prefab="Prefabs/iNidogen"/>
+    <Image name="Perlecan" path="Images/Molecules/Perlecan" prefab="Prefabs/iPerlecan"/>
+    <Image name="Laminin" path="Images/Molecules/Laminin" prefab="Prefabs/iLaminin"/>
+    <Image name="Integrin" path="Images/Molecules/Integrin" prefab="Prefabs/iIntegrin"/>
 </Images>
