@@ -101,6 +101,16 @@ public class SpawnPrefab : MonoBehaviour
                 });
             }
 
+            DashedLineMol[] allDashedLines = labelUI.GetComponentsInChildren<DashedLineMol>(true);
+
+            if (allDashedLines.Length > 0)
+            {
+                DashedLineMol dashedLine = allDashedLines[0];
+                dashedLine.startPoint = spawnedObject.transform;
+                dashedLine.targetObject = scrollViewContent.gameObject; // Assigner le parent de la ScrollView
+                dashedLine.gameObject.SetActive(false); // Désactive pour éviter rendu imediat
+            }
+
             // Augmenter la taille du content (en hauteur)
             Vector2 size = scrollViewContent.sizeDelta;
             size.y += labelHeight;
