@@ -118,5 +118,3 @@ public class SpawnPrefab : MonoBehaviour
         prefabToSpawn = obj;
     }
 }
-
-
