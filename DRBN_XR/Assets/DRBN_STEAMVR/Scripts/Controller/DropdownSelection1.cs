@@ -6,7 +6,7 @@ public class DropdownSelection : MonoBehaviour
 {
     public TMP_Dropdown dropdown;               // Référence au Dropdown UI
     public ImageLoader imageLoader;             // Référence au script ImageLoader
-    public SpawnPrefab anotherScript;           // Référence au script cible
+    public SpawnPrefab spawnPrefab;             // Référence au script SpawnPrefab
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class DropdownSelection : MonoBehaviour
             return;
         }
 
-        if (anotherScript == null)
+        if (spawnPrefab == null)
         {
             Debug.LogError("DropdownSelection: SpawnPrefab reference is not set.");
             return;
@@ -45,7 +45,7 @@ public class DropdownSelection : MonoBehaviour
 
             if (prefabToSpawn != null)
             {
-                anotherScript.SetTargetObject(prefabToSpawn);
+                spawnPrefab.SetTargetObject(prefabToSpawn);
                 Debug.Log("Objet sélectionné : " + prefabToSpawn.name);
             }
             else
@@ -55,6 +55,8 @@ public class DropdownSelection : MonoBehaviour
         }
         else
         {
+            // Si l'index est hors limites, réinitialiser le préfab à null
+            spawnPrefab.SetTargetObject(null);
             Debug.LogWarning("Index hors limites ou aucun objet assigné.");
         }
     }

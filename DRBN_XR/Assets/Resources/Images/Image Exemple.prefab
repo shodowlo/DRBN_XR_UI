@@ -95,9 +95,9 @@ MonoBehaviour:
   m_fontSize: 10
   m_fontSizeBase: 10
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 10
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -300,7 +300,6 @@ GameObject:
   - component: {fileID: 8160114014494627450}
   - component: {fileID: 5757910383778864906}
   - component: {fileID: 8192871476131777026}
-  - component: {fileID: -5443995777519308285}
   m_Layer: 5
   m_Name: Image Exemple
   m_TagString: Untagged
@@ -317,7 +316,7 @@ RectTransform:
   m_GameObject: {fileID: 9115486989321500186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2095870550643231872}
@@ -452,18 +451,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPanel: {fileID: 3142820120538386842}
   secondPanel: {fileID: 3296376940443317784}
---- !u!114 &-5443995777519308285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9115486989321500186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca0bbf2bad186bb4b80edc8d374cf86b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropdown: {fileID: 0}
-  toggleObject: {fileID: 0}
-  optionName: 
