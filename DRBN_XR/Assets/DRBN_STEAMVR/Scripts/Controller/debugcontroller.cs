@@ -1,26 +1,39 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class debugcontroller : MonoBehaviour
+public class DebugController : MonoBehaviour
 {
-    public GameObject objectToEnable; // Objet à activer à chaque Update
-    public GameObject objectToPosition; // Objet à positionner et orienter au Start
+    [System.Serializable]
+    public class ObjectTransform
+    {
+        public GameObject gameObject;
+        public Vector3 localPosition;
+        public Vector3 localEulerAngles;
+    }
+
+    public List<GameObject> objectsToEnable = new List<GameObject>();
+    public List<ObjectTransform> objectsToPosition = new List<ObjectTransform>();
 
     void Start()
     {
-        if (objectToPosition != null)
+        foreach (var obj in objectsToPosition)
         {
-            // Position locale (0, 0, 0.1)
-            objectToPosition.transform.localPosition = new Vector3(-0.2f, 0f, 0.5f);
-            // Rotation locale (90, 180, 0)
-            objectToPosition.transform.localEulerAngles = new Vector3(55f, 180f, 0f);
+            if (obj.gameObject != null)
+            {
+                obj.gameObject.transform.localPosition = obj.localPosition;
+                obj.gameObject.transform.localEulerAngles = obj.localEulerAngles;
+            }
         }
     }
 
     void Update()
     {
-        if (objectToEnable != null && !objectToEnable.activeSelf)
+        foreach (var obj in objectsToEnable)
         {
-            objectToEnable.SetActive(true);
+            if (obj != null && !obj.activeSelf)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 }
