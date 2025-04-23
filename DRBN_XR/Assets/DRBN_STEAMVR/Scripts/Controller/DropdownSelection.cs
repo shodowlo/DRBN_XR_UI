@@ -58,6 +58,10 @@ public class DropdownSelection : MonoBehaviour
         }
 
         int index = dropdown.value;
+        if (index == dropdown.options.Count)
+        {
+            index--;
+        }
         if (index >= 0 && index < dropdown.options.Count)
         {
             string selectedOption = dropdown.options[index].text;
@@ -75,9 +79,7 @@ public class DropdownSelection : MonoBehaviour
         }
         else
         {
-            // Si l'index est hors limites, réinitialiser le préfab à null
-            spawnPrefab.SetTargetObject(null);
-            Debug.LogWarning("Index hors limites ou aucun objet assigné.");
+            Debug.LogWarning("Index de dropdown invalide : " + index);
         }
     }
 }
