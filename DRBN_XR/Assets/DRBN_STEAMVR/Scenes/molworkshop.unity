@@ -8991,6 +8991,11 @@ PrefabInstance:
       objectReference: {fileID: 1835918978}
     - target: {fileID: 1074501019814755816, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
+      propertyPath: spawnPrefab
+      value: 
+      objectReference: {fileID: 1946228059}
+    - target: {fileID: 1074501019814755816, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
       propertyPath: anotherScript
       value: 
       objectReference: {fileID: 1946228059}
@@ -20545,6 +20550,7 @@ MonoBehaviour:
   imageTextPrefab: {fileID: 9115486989321500186, guid: d1f0f6bf9b298c94c93610b5ce1f463a,
     type: 3}
   dropdown: {fileID: 510409909}
+  dropdownSelection: {fileID: 0}
 --- !u!1 &1881114549
 GameObject:
   m_ObjectHideFlags: 0

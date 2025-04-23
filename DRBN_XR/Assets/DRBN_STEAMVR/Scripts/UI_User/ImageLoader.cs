@@ -11,6 +11,7 @@ public class ImageLoader : MonoBehaviour
     public GameObject imageContainer; // Conteneur pour les images
     public GameObject imageTextPrefab; // Prefab pour l'image et le texte
     public TMP_Dropdown dropdown; // Référence au DropdownTMP
+    public DropdownSelection dropdownSelection; // Référence au script DropdownSelection
 
     private Dictionary<string, GameObject> imageToggleObjects = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
@@ -139,6 +140,7 @@ public class ImageLoader : MonoBehaviour
             {
                 clickHandler.imageName = name; // Assigner le nom de l'image
                 clickHandler.dropdown = dropdown; // Assigner la référence au DropdownTMP
+                clickHandler.imageLoader = this; // Assigner la référence à ImageLoader
                 Debug.Log("ImageLoader: Set click handler for: " + name);
             }
             else
@@ -192,6 +194,12 @@ public class ImageLoader : MonoBehaviour
                 dropdown.ClearOptions();
                 dropdown.AddOptions(activeImageNames.Select(name => new TMP_Dropdown.OptionData(name)).ToList());
                 Debug.Log("ImageLoader: Updated dropdown options.");
+
+                // Appeler ForceUpdateSpawnPrefab après la mise à jour du Dropdown
+                if (dropdownSelection != null)
+                {
+                    dropdownSelection.ForceUpdateSpawnPrefab();
+                }
             }
         }
     }
@@ -204,42 +212,25 @@ public class ImageLoader : MonoBehaviour
         }
         return null;
     }
-}
-    // void Update()
-    // {
-    //     if (dropdown != null)
-    //     {
-    //         foreach (var kvp in imageToggleObjects)
-    //         {
-    //             string imageName = kvp.Key;
-    //             GameObject parentObject = kvp.Value;
-    //             GameObject toggleObject = parentObject.transform.GetChild(0).gameObject; // Supposons que l'enfant est le premier enfant
 
-    //             if (toggleObject != null)
-    //             {
-    //                 if (toggleObject.activeSelf)
-    //                 {
-    //                     // Ajouter l'option au dropdown si elle n'existe pas déjà
-    //                     if (!dropdown.options.Any(option => option.text == imageName))
-    //                     {
-    //                         dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(imageName) });
-    //                         Debug.Log("ImageLoader: Added item to dropdown: " + imageName);
-    //                     }
-    //                 }
-    //                 else
-    //                 {
-    //                     // Retirer l'option du dropdown si elle existe
-    //                     var options = dropdown.options.ToList();
-    //                     var optionToRemove = options.FirstOrDefault(option => option.text == imageName);
-    //                     if (optionToRemove != null)
-    //                     {
-    //                         options.Remove(optionToRemove);
-    //                         dropdown.ClearOptions();
-    //                         dropdown.AddOptions(options);
-    //                         Debug.Log("ImageLoader: Removed item from dropdown: " + imageName);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    public void RemoveOptionFromDropdown(string optionText)
+    {
+        TMP_Dropdown.OptionData option = dropdown.options.Find(o => string.Equals(o.text, optionText));
+        if (option != null)
+        {
+            dropdown.options.Remove(option);
+            dropdown.RefreshShownValue(); // Met à jour l'affichage du dropdown
+            Debug.Log("ImageLoader: Removed option from dropdown: " + optionText);
+
+            // Appeler ForceUpdateSpawnPrefab après la suppression de l'option
+            if (dropdownSelection != null)
+            {
+                dropdownSelection.ForceUpdateSpawnPrefab();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("ImageLoader: Option not found in dropdown: " + optionText);
+        }
+    }
+}
