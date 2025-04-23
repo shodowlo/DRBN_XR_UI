@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ToggleMenuAnimation : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ToggleMenuAnimation : MonoBehaviour
 
     public List<GameObject> objectsToHideOnClose;
     public MonoBehaviour[] scriptsToDeactivateOnClose;
+    public MonoBehaviour[] scriptsToActivateOnOpen;
 
     private bool isAnimating = false;
     private bool isMenuOpen = false;
@@ -32,6 +34,7 @@ public class ToggleMenuAnimation : MonoBehaviour
         menuCanvas.transform.rotation = startTransform.rotation;
         menuCanvas.transform.localScale = Vector3.one * 0.1f;
 
+        Togglescripts(scriptsToActivateOnOpen, true);
         StartCoroutine(AnimateMenu(endTransform, true));
     }
 

@@ -16,7 +16,6 @@ public class DashedLine : MonoBehaviour
     private Vector3 lastStart;
     private Vector3 lastEnd;
 
-
     void Update()
     {
         float targetY = targetObject.transform.parent.InverseTransformPoint(endPoint.transform.position).y;

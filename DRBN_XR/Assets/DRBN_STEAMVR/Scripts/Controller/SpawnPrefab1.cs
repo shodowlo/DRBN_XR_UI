@@ -18,6 +18,9 @@ public class SpawnPrefab : MonoBehaviour
 
     private float labelHeight = 28.7f; // Hauteur d’un label (en unités UI)
 
+    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private List<GameObject> spawnedLabels = new List<GameObject>();
+
     void Start()
     {
         List<InputDevice> inputDevices = new List<InputDevice>();
@@ -63,6 +66,7 @@ public class SpawnPrefab : MonoBehaviour
         if (prefabToSpawn != null && spawnPoint != null)
         {
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+            spawnedObjects.Add(spawnedObject);
             SpawnUILabel(prefabToSpawn.name, spawnedObject);
         }
         else
@@ -77,6 +81,9 @@ public class SpawnPrefab : MonoBehaviour
         {
             GameObject labelUI = Instantiate(labelUIPrefab, uiCanvas.transform); // Important : scrollViewContent ici
             TextMeshProUGUI text = labelUI.GetComponentInChildren<TextMeshProUGUI>();
+
+            spawnedLabels.Add(labelUI);
+
             if (text != null)
             {
                 text.text = labelText;
@@ -90,9 +97,11 @@ public class SpawnPrefab : MonoBehaviour
                 {
                     // Supprimer la molécule
                     Destroy(spawnedObject);
+                    spawnedObjects.Remove(spawnedObject);
 
                     // Supprimer l'élément UI
                     Destroy(labelUI);
+                    spawnedLabels.Remove(labelUI);
 
                     // Réduire la hauteur du content
                     Vector2 size = scrollViewContent.sizeDelta;
@@ -121,6 +130,26 @@ public class SpawnPrefab : MonoBehaviour
             Debug.LogWarning("Label UI Prefab ou Content de ScrollView non assigné.");
         }
     }
+
+    public void ClearAll()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj != null)
+                Destroy(obj);
+        }
+        spawnedObjects.Clear();
+
+        foreach (GameObject label in spawnedLabels)
+        {
+            if (label != null)
+                Destroy(label);
+        }
+        spawnedLabels.Clear();
+
+        scrollViewContent.sizeDelta = new Vector2(scrollViewContent.sizeDelta.x, 0);
+    }
+
 
 
     public void SetTargetObject(GameObject obj)
