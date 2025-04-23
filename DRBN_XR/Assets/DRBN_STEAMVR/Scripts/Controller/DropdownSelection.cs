@@ -38,6 +38,26 @@ public class DropdownSelection : MonoBehaviour
 
     void OnDropdownValueChanged(int index)
     {
+        ForceUpdateSpawnPrefab();
+    }
+
+    public void ForceUpdateSpawnPrefab()
+    {
+        Debug.Log("ForceUpdateSpawnPrefab est appelé");
+        UpdateSpawnPrefab();
+    }
+
+    private void UpdateSpawnPrefab()
+    {
+        if (dropdown.options.Count == 0)
+        {
+            // Si le dropdown est vide, ne pas faire spawn de préfab
+            spawnPrefab.SetTargetObject(null);
+            Debug.Log("Dropdown is empty. No prefab will be spawned.");
+            return;
+        }
+
+        int index = dropdown.value;
         if (index >= 0 && index < dropdown.options.Count)
         {
             string selectedOption = dropdown.options[index].text;
