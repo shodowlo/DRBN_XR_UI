@@ -15,4 +15,9 @@ public class KeyButton : MonoBehaviour
     {
         keyboardManager.Backspace();
     }
+
+    public void HideKeyboard()
+    {
+        keyboardManager.HideKeyboard();
+    }
 }

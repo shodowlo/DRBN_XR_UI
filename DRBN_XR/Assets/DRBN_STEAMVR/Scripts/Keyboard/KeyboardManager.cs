@@ -16,4 +16,9 @@ public class KeyboardManager : MonoBehaviour
         if (inputField.text.Length > 0)
             inputField.text = inputField.text.Substring(0, inputField.text.Length - 1);
     }
+
+    public void HideKeyboard()
+    {
+        gameObject.SetActive(false);
+    }
 }
