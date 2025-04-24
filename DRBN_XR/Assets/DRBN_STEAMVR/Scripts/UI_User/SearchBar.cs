@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Text.RegularExpressions;
 
 public class SearchBar : MonoBehaviour
 {
@@ -9,24 +10,22 @@ public class SearchBar : MonoBehaviour
 
     void Start()
     {
-        // Ajoutez un listener pour détecter les changements dans l'InputField
         searchInputField.onValueChanged.AddListener(OnSearchTextChanged);
     }
 
     void OnSearchTextChanged(string searchText)
     {
-        // Parcourez tous les enfants du GridLayoutGroup
+        string pattern = Regex.Escape(searchText).Replace("\\*", "\\d");
+
         foreach (Transform child in gridLayoutGroup.transform)
         {
-            // Vérifiez si le nom de l'enfant commence par le texte saisi
-            if (child.name.ToLower().StartsWith(searchText.ToLower()))
+            // Compare child name with search
+            if (Regex.IsMatch(child.name, "^" + pattern, RegexOptions.IgnoreCase))
             {
-                // Affichez l'enfant
                 child.gameObject.SetActive(true);
             }
             else
             {
-                // Cachez l'enfant
                 child.gameObject.SetActive(false);
             }
         }

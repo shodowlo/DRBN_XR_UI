@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic; // Ajout de l'importation pour List
-using System.Linq; // Ajout de l'importation pour LINQ
+using System.Collections.Generic;
+using System.Linq;
 
 public class ImageClickHandler : MonoBehaviour
 {
-    public string imageName; // Nom de l'image
-    public TMP_Dropdown dropdown; // Référence au DropdownTMP
-    public ImageLoader imageLoader; // Référence au script ImageLoader
+    public string imageName; // image's name
+    public TMP_Dropdown dropdown; // Dropdown for the selected prefab
+    public ImageLoader imageLoader; // Script ImageLoader
     private Button button; // Composant Button pour gérer les clics
 
     void Start()
@@ -28,21 +28,19 @@ public class ImageClickHandler : MonoBehaviour
     {
         if (dropdown != null && !string.IsNullOrEmpty(imageName))
         {
-            // Vérifiez si l'option existe déjà dans le dropdown
+            // if prefab is in dropdown, delete it
             if (dropdown.options.Any(option => option.text == imageName))
             {
-                // Si l'option existe déjà, la retirer
                 imageLoader.RemoveOptionFromDropdown(imageName);
                 Debug.Log("ImageClickHandler: Removed existing item from dropdown: " + imageName);
             }
             else
             {
-                // Ajouter l'option au dropdown
+                // add the prefab
                 dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(imageName) });
                 Debug.Log("ImageClickHandler: Added item to dropdown: " + imageName);
             }
 
-            // Obtenir la référence au script DropdownSelection à partir du composant TMP_Dropdown
             DropdownSelection dropdownSelection = dropdown.GetComponent<DropdownSelection>();
             if (dropdownSelection != null)
             {
