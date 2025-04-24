@@ -47,7 +47,7 @@ public class ToggleButton3D : MonoBehaviour
         // Animation position
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * moveSpeed);
 
-        // Animation couleur
+        // Animation color
         if (buttonImage != null)
         {
             buttonImage.color = Color.Lerp(buttonImage.color, targetColor, Time.deltaTime * moveSpeed);
@@ -61,13 +61,13 @@ public class ToggleButton3D : MonoBehaviour
     {
         isPressed = !isPressed;
 
-        // Nouvelle position cible
+        // New position target
         targetPosition = originalLocalPosition + (isPressed ? new Vector3(0, 0, pressDepth) : Vector3.zero);
 
-        // Nouvelle couleur cible
+        // New color target
         targetColor = isPressed ? pressedColor : normalColor;
 
-        // Nouveau scale cible
+        // New scale target
         targetScale = isPressed ? originalScale * pressedScale : originalScale;
         
         ToggleObjects();
@@ -79,10 +79,10 @@ public class ToggleButton3D : MonoBehaviour
 
         targetPosition = originalLocalPosition + (isPressed ? new Vector3(0, 0, pressDepth) : Vector3.zero);
 
-        // Nouvelle couleur cible
+        // New color target
         targetColor = isPressed ? pressedColor : normalColor;
 
-        // Nouveau scale cible
+        // New scale target
         targetScale = isPressed ? originalScale * pressedScale : originalScale;
 
         ToggleObjects();

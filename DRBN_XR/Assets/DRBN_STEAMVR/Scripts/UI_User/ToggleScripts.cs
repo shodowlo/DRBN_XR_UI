@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class ToggleScripts: MonoBehaviour
 {
-    public MonoBehaviour[] scriptsToEnable;    // Liste de scripts à activer
-    public MonoBehaviour[] scriptsToDeactivate; // Liste de scripts à désactiver
+    public MonoBehaviour[] scriptsToEnable;
+    public MonoBehaviour[] scriptsToDeactivate;
 
-    private Button thisButton;                 // Référence au bouton actuel
+    private Button thisButton;  // This button
 
     void Start()
     {
-        // Obtenir la référence au bouton actuel
         thisButton = GetComponent<Button>();
 
         if (thisButton == null)
@@ -19,7 +18,6 @@ public class ToggleScripts: MonoBehaviour
             return;
         }
 
-        // Ajouter un listener pour coordonner les actions
         thisButton.onClick.AddListener(OnButtonClick);
     }
 
@@ -44,5 +42,4 @@ public class ToggleScripts: MonoBehaviour
             }
         }
     }
-
 }

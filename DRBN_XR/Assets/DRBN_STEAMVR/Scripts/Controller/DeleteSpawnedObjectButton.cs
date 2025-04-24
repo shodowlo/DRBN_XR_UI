@@ -15,7 +15,7 @@ public class DeleteSpawnedObjectButton : MonoBehaviour
         if (targetObject != null)
         {
             Destroy(targetObject);
-            Destroy(transform.parent.gameObject); // Supprime aussi l’UI liée
+            Destroy(transform.parent.gameObject); // delete link UI 
         }
     }
 }

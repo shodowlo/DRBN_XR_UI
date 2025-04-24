@@ -7,7 +7,7 @@ public class DeletePrefab : MonoBehaviour
     private InputDevice leftController;
     private InputDevice rightController;
     private bool previousButtonState = false;
-    private GameObject leftGrabbedObject = null; // Variable pour suivre l'objet attrapé par le contrôleur gauche
+    private GameObject leftGrabbedObject = null; // follow object grab by left controller
 
     void Start()
     {
@@ -49,7 +49,6 @@ public class DeletePrefab : MonoBehaviour
 
         previousButtonState = isPressed;
 
-        // Vérifier si le contrôleur gauche attrape un objet
         CheckForGrabbing(leftController, ref leftGrabbedObject);
     }
 
@@ -62,7 +61,6 @@ public class DeletePrefab : MonoBehaviour
             {
                 if (grabbedObject == null)
                 {
-                    // Essayer d'attraper un objet
                     if (controller.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position) &&
                         controller.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion rotation))
                     {
@@ -77,7 +75,6 @@ public class DeletePrefab : MonoBehaviour
             }
             else
             {
-                // Relâcher l'objet si le bouton de préhension n'est pas pressé
                 grabbedObject = null;
             }
         }

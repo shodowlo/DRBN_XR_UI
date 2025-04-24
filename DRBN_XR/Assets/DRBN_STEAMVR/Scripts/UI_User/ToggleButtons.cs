@@ -5,7 +5,7 @@ public class ToggleButtons : MonoBehaviour
 {
     public Button[] buttonsToEnable; // Buttons to enable
 
-    private Button thisButton; // This Button
+    private Button thisButton;
 
     void Start()
     {
