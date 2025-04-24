@@ -36,7 +36,7 @@ public class DropdownSelection : MonoBehaviour
         OnDropdownValueChanged(dropdown.value);
     }
 
-    void OnDropdownValueChanged(int index)
+    public void OnDropdownValueChanged(int index)
     {
         ForceUpdateSpawnPrefab();
     }
@@ -64,7 +64,7 @@ public class DropdownSelection : MonoBehaviour
         }
         if (index >= 0 && index < dropdown.options.Count)
         {
-            string selectedOption = dropdown.options[index].text;
+            string selectedOption = dropdown.options[index].text;           
             GameObject prefabToSpawn = imageLoader.GetPrefabByName(selectedOption);
 
             if (prefabToSpawn != null)
