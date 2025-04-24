@@ -9,14 +9,14 @@ public class SpawnPrefab : MonoBehaviour
     private GameObject prefabToSpawn;
     public Transform spawnPoint;
 
-    public GameObject labelUIPrefab;       // Le prefab avec TextMeshProUGUI
-    public GameObject uiCanvas;                // Le canvas (pas obligatoire ici, juste pour contexte)
+    public GameObject labelUIPrefab;       // Prefab with TextMeshProUGUI
+    public GameObject uiCanvas;
     public RectTransform scrollViewContent; // 👉 Le content de la ScrollView
 
     private InputDevice targetDevice;
     private bool previousButtonState = false;
 
-    private float labelHeight = 28.7f; // Hauteur d’un label (en unités UI)
+    private float labelHeight = 28.7f;
 
     private List<GameObject> spawnedObjects = new List<GameObject>();
     private List<GameObject> spawnedLabels = new List<GameObject>();
@@ -38,11 +38,6 @@ public class SpawnPrefab : MonoBehaviour
 
     void Update()
     {
-        //if (!targetDevice.isValid)
-        //{
-        //    Start();
-        //    return;
-        //}
 
         bool isPressed = false;
 
@@ -79,7 +74,7 @@ public class SpawnPrefab : MonoBehaviour
     {
         if (labelUIPrefab != null && scrollViewContent != null)
         {
-            GameObject labelUI = Instantiate(labelUIPrefab, uiCanvas.transform); // Important : scrollViewContent ici
+            GameObject labelUI = Instantiate(labelUIPrefab, uiCanvas.transform); // scrollViewContent
             TextMeshProUGUI text = labelUI.GetComponentInChildren<TextMeshProUGUI>();
 
             spawnedLabels.Add(labelUI);
@@ -89,21 +84,17 @@ public class SpawnPrefab : MonoBehaviour
                 text.text = labelText;
             }
 
-            // Chercher le bouton dans l’UI
             Button deleteButton = labelUI.GetComponentInChildren<Button>();
             if (deleteButton != null)
             {
                 deleteButton.onClick.AddListener(() =>
                 {
-                    // Supprimer la molécule
                     Destroy(spawnedObject);
                     spawnedObjects.Remove(spawnedObject);
 
-                    // Supprimer l'élément UI
                     Destroy(labelUI);
                     spawnedLabels.Remove(labelUI);
 
-                    // Réduire la hauteur du content
                     Vector2 size = scrollViewContent.sizeDelta;
                     size.y -= labelHeight;
                     scrollViewContent.sizeDelta = size;
@@ -116,11 +107,10 @@ public class SpawnPrefab : MonoBehaviour
             {
                 DashedLineMol dashedLine = allDashedLines[0];
                 dashedLine.startPoint = spawnedObject.transform;
-                dashedLine.targetObject = scrollViewContent.gameObject; // Assigner le parent de la ScrollView
-                dashedLine.gameObject.SetActive(false); // Désactive pour éviter rendu imediat
+                dashedLine.targetObject = scrollViewContent.gameObject;
+                dashedLine.gameObject.SetActive(false);
             }
 
-            // Augmenter la taille du content (en hauteur)
             Vector2 size = scrollViewContent.sizeDelta;
             size.y += labelHeight;
             scrollViewContent.sizeDelta = size;

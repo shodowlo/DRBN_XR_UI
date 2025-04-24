@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class ToggleMenuAnimation : MonoBehaviour
 {
     public Transform startTransform;           // Point de sortie (ex: contrôleur)
-    public Transform endTransform;             // Position finale du menu
-    public GameObject menuCanvas;              // Le canvas à animer
-    public float animationDuration = 0.5f;     // Durée de l'animation
+    public Transform endTransform;             // Final position  of the menu
+    public GameObject menuCanvas;              // Canvas
+    public float animationDuration = 0.5f;     // Animation Duration
 
     public List<GameObject> objectsToHideOnClose;
     public MonoBehaviour[] scriptsToDeactivateOnClose;

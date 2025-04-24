@@ -29,7 +29,7 @@ public class DashedLineMol : MonoBehaviour
         float targetY = targetObject.transform.parent.InverseTransformPoint(endPoint.transform.position).y;
         Debug.Log("targetY: " + targetY + " minY: " + minY + " maxY: " + maxY);
 
-        // Vérifie si targetY est dans l'intervalle [minY, maxY]
+        // Verify if targetY is in the interval [minY, maxY]
         if (targetY >= minY && targetY <= maxY)
         {
             if (startPoint.position != lastStart || endPoint.position != lastEnd)
@@ -41,7 +41,6 @@ public class DashedLineMol : MonoBehaviour
         }
         else
         {
-            // Supprime les dashes si la condition n'est plus remplie
             if (transform.childCount > 0)
             {
                 foreach (Transform child in transform)
@@ -54,7 +53,6 @@ public class DashedLineMol : MonoBehaviour
 
     private void Redraw()
     {
-        // Supprimer les anciens dashes
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);

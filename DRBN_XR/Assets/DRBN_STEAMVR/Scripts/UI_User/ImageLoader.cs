@@ -7,11 +7,11 @@ using System.Linq;
 
 public class ImageLoader : MonoBehaviour
 {
-    public string xmlFilePath = "XML/PrefabList"; // Chemin vers votre fichier XML dans le dossier Resources
-    public GameObject imageContainer; // Conteneur pour les images
-    public GameObject imageTextPrefab; // Prefab pour l'image et le texte
-    public TMP_Dropdown dropdown; // Référence au DropdownTMP
-    public DropdownSelection dropdownSelection; // Référence au script DropdownSelection
+    public string xmlFilePath = "XML/PrefabList"; // path to XLM from Resources/
+    public GameObject imageContainer; // panel with the pictures
+    public GameObject imageTextPrefab; // Prefab image
+    public TMP_Dropdown dropdown; // DropdownTMP
+    public DropdownSelection dropdownSelection; // Script DropdownSelection
 
     private Dictionary<string, GameObject> imageToggleObjects = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
@@ -74,7 +74,7 @@ public class ImageLoader : MonoBehaviour
             if (image != null && prefab != null)
             {
                 loadedImages.Add((image, imageName, prefab));
-                prefabs[imageName] = prefab; // Stocker le prefab dans le dictionnaire
+                prefabs[imageName] = prefab; // save prefab in dictionary
                 Debug.Log("ImageLoader: Loaded image: " + imageName + " from path: " + imagePath);
             }
             else
@@ -83,7 +83,7 @@ public class ImageLoader : MonoBehaviour
             }
         }
 
-        // Trier les images par nom
+        // Image order by name
         loadedImages = loadedImages.OrderBy(image => image.name).ToList();
         Debug.Log("ImageLoader: Images sorted.");
 
@@ -109,9 +109,8 @@ public class ImageLoader : MonoBehaviour
 
         foreach (var (image, name, prefab) in images)
         {
-            // Instancier le prefab
             GameObject instance = Instantiate(imageTextPrefab, imageContainer.transform);
-            instance.name = name; // Définir le nom de l'objet instancié
+            instance.name = name; // instance name same as in XLM
 
             Image imageComponent = instance.GetComponent<Image>();
             TextMeshProUGUI textComponent = instance.GetComponentInChildren<TextMeshProUGUI>();
@@ -120,7 +119,7 @@ public class ImageLoader : MonoBehaviour
             if (imageComponent != null)
             {
                 imageComponent.sprite = image;
-                imageComponent.preserveAspect = true; // Pour conserver le ratio d'aspect de l'image
+                imageComponent.preserveAspect = true; // save the ratio of the picture
                 Debug.Log("ImageLoader: Set image sprite for: " + name);
             }
             else
@@ -130,7 +129,7 @@ public class ImageLoader : MonoBehaviour
 
             if (textComponent != null)
             {
-                textComponent.text = name; // Afficher le nom de l'image dans le texte
+                textComponent.text = name;
                 Debug.Log("ImageLoader: Set text for: " + name);
             }
             else
@@ -140,9 +139,9 @@ public class ImageLoader : MonoBehaviour
 
             if (clickHandler != null)
             {
-                clickHandler.imageName = name; // Assigner le nom de l'image
-                clickHandler.dropdown = dropdown; // Assigner la référence au DropdownTMP
-                clickHandler.imageLoader = this; // Assigner la référence à ImageLoader
+                clickHandler.imageName = name; // image name
+                clickHandler.dropdown = dropdown; // DropdownTMP
+                clickHandler.imageLoader = this; // imageLoader
                 Debug.Log("ImageLoader: Set click handler for: " + name);
             }
             else
@@ -150,13 +149,13 @@ public class ImageLoader : MonoBehaviour
                 Debug.LogWarning("ImageLoader: ImageClickHandler component not found in prefab instance.");
             }
 
-            // Ajouter l'instance au dictionnaire pour suivre son état
+            // follow state
             imageToggleObjects[name] = instance;
 
             Debug.Log("ImageLoader: Displayed image: " + name);
         }
 
-        // Ajoutez une ScrollRect si nécessaire
+        // Add scroll rect only if necessary
         ScrollRect scrollRect = imageContainer.GetComponentInParent<ScrollRect>();
         if (scrollRect == null)
         {
@@ -181,7 +180,7 @@ public class ImageLoader : MonoBehaviour
     //         {
     //             string imageName = kvp.Key;
     //             GameObject parentObject = kvp.Value;
-    //             GameObject toggleObject = parentObject.transform.GetChild(0).gameObject; // Supposons que l'enfant est le premier enfant
+    //             GameObject toggleObject = parentObject.transform.GetChild(0).gameObject;
 
     //             if (toggleObject != null && toggleObject.activeSelf)
     //             {
@@ -189,7 +188,6 @@ public class ImageLoader : MonoBehaviour
     //             }
     //         }
 
-    //         // Mettre à jour le Dropdown uniquement si les options actives ont changé
     //         List<string> currentDropdownOptions = dropdown.options.Select(option => option.text).ToList();
     //         if (!activeImageNames.SequenceEqual(currentDropdownOptions))
     //         {
@@ -197,12 +195,11 @@ public class ImageLoader : MonoBehaviour
     //             dropdown.AddOptions(activeImageNames.Select(name => new TMP_Dropdown.OptionData(name)).ToList());
     //             Debug.Log("ImageLoader: Updated dropdown options.");
 
-    //             // Appeler ForceUpdateSpawnPrefab après la mise à jour du Dropdown
     //             if (dropdownSelection != null)
     //             {
     //                 dropdownSelection.ForceUpdateSpawnPrefab();
     //             }
-    //             dropdownSelection.OnDropdownValueChanged(dropdown.value); // Mettre à jour la valeur sélectionnée
+    //             dropdownSelection.OnDropdownValueChanged(dropdown.value);
 
                 
     //         }
@@ -224,10 +221,10 @@ public class ImageLoader : MonoBehaviour
         if (option != null)
         {
             dropdown.options.Remove(option);
-            dropdown.RefreshShownValue(); // Met à jour l'affichage du dropdown
+            dropdown.RefreshShownValue();
             Debug.Log("ImageLoader: Removed option from dropdown: " + optionText);
 
-            // Appeler ForceUpdateSpawnPrefab après la suppression de l'option
+            // update prefab dropdown
             if (dropdownSelection != null)
             {
                 dropdownSelection.ForceUpdateSpawnPrefab();
@@ -238,6 +235,4 @@ public class ImageLoader : MonoBehaviour
             Debug.LogWarning("ImageLoader: Option not found in dropdown: " + optionText);
         }
     }
-
-
 }

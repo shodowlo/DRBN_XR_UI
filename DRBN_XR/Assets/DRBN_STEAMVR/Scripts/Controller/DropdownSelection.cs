@@ -4,13 +4,12 @@ using TMPro;
 
 public class DropdownSelection : MonoBehaviour
 {
-    public TMP_Dropdown dropdown;               // Référence au Dropdown UI
-    public ImageLoader imageLoader;             // Référence au script ImageLoader
-    public SpawnPrefab spawnPrefab;             // Référence au script SpawnPrefab
+    public TMP_Dropdown dropdown;               // Dropdown UI
+    public ImageLoader imageLoader;             // script ImageLoader
+    public SpawnPrefab spawnPrefab;             // script SpawnPrefab
 
     void Start()
     {
-        // Vérifier si les références sont définies
         if (dropdown == null)
         {
             Debug.LogError("DropdownSelection: Dropdown reference is not set.");
@@ -29,10 +28,9 @@ public class DropdownSelection : MonoBehaviour
             return;
         }
 
-        // Ajouter un listener pour détecter les changements de valeur du Dropdown
         dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
 
-        // Initialiser la sélection avec le premier élément
+        // Initialize with first element
         OnDropdownValueChanged(dropdown.value);
     }
 
@@ -51,7 +49,6 @@ public class DropdownSelection : MonoBehaviour
     {
         if (dropdown.options.Count == 0)
         {
-            // Si le dropdown est vide, ne pas faire spawn de préfab
             spawnPrefab.SetTargetObject(null);
             Debug.Log("Dropdown is empty. No prefab will be spawned.");
             return;

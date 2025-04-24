@@ -19,13 +19,11 @@ public class Interface_Size : MonoBehaviour
         slider.minValue = 0f;
         slider.maxValue = 1f;
 
-        // Récupérer la valeur sauvegardée du slider
         if (PlayerPrefs.HasKey("SliderValue"))
         {
             float savedSliderValue = PlayerPrefs.GetFloat("SliderValue");
             slider.value = savedSliderValue;
-            // Mettre à jour l'échelle avec la valeur sauvegardée
-            OnSliderReleased(savedSliderValue);
+            OnSliderReleased(savedSliderValue);     // Use save value
         }
 
         // Get the EventTrigger component and add a listener for PointerUp
@@ -46,7 +44,7 @@ public class Interface_Size : MonoBehaviour
         shouldUpdateScale = true; // Allow scale update
         UpdateScale(value);
         shouldUpdateScale = false; // Reset the flag
-        PlayerPrefs.SetFloat("SliderValue", value); // Sauvegarder la nouvelle valeur
+        PlayerPrefs.SetFloat("SliderValue", value);
     }
 
     public void UpdateScale(float value)
