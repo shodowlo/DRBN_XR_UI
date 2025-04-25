@@ -16043,8 +16043,8 @@ GameObject:
   - component: {fileID: 1579343359}
   - component: {fileID: 1579343358}
   - component: {fileID: 1579343362}
-  - component: {fileID: 1579343363}
   - component: {fileID: 1579343364}
+  - component: {fileID: 1579343365}
   m_Layer: 5
   m_Name: UI User
   m_TagString: Untagged
@@ -16199,20 +16199,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1579343363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579343356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faae9ba1f9c512249bf0618bc019b138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1589951689}
-  distance: 1
 --- !u!114 &1579343364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16227,6 +16213,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 330126294}
   moveDistance: -17.7
+  moveSpeed: 10
+--- !u!114 &1579343365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579343356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faae9ba1f9c512249bf0618bc019b138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1589951689}
+  distance: 1
   moveSpeed: 10
 --- !u!1 &1585949214
 GameObject:
