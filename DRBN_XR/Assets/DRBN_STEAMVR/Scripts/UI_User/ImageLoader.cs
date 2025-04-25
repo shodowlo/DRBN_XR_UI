@@ -104,7 +104,7 @@ public class ImageLoader : MonoBehaviour
         {
             gridLayout = imageContainer.AddComponent<GridLayoutGroup>();
             gridLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-            gridLayout.constraintCount = 3;
+            gridLayout.constraintCount = 2;
         }
 
         foreach (var (image, name, prefab) in images)
