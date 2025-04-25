@@ -30,6 +30,12 @@ public class Script_UI_Apparition : MonoBehaviour
             }
             previousButtonState = isPressed;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleCanvas();
+            ToggleGameObjects();
+        }
     }
 
     void ToggleCanvas()
@@ -44,19 +50,21 @@ public class Script_UI_Apparition : MonoBehaviour
     {
         if (canvasToToggle != null && canvasToToggle.activeSelf)
         {
-            // Hide all the gameobjects who need it
+            // if not active, activate
+            if (gameObjectToShow != null && !gameObjectToShow.activeSelf)
+            {
+                gameObjectToShow.SetActive(true);
+            }
+        }
+        // Hide all the gameobjects who need it
+        if(canvasToToggle != null && !canvasToToggle.activeSelf)
+        {
             foreach (var obj in gameObjectsToHide)
             {
                 if (obj != null)
                 {
                     obj.SetActive(false);
                 }
-            }
-
-            // if not active, activate
-            if (gameObjectToShow != null && !gameObjectToShow.activeSelf)
-            {
-                gameObjectToShow.SetActive(true);
             }
         }
     }
