@@ -497,10 +497,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Step 3: The Controller Menu\n\r\nOn the right controller, you\u2019ll
-    see a circular menu. You can hover over a button to display a dialog window showing
+  m_text: "Step 3: The Controller Menu\n\r\nOn the left controller, you\u2019ll see
+    a circular menu. You can hover over a button to display a dialog window showing
     a textured preview of what each button does.\r\n\r\nThe first button at the top
-    right is the clock. When activated, it displays both a clock and a stopwatch.
+    left is the clock. When activated, it displays both a clock and a stopwatch.
     To use the stopwatch, simply point at it to reveal the controls."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

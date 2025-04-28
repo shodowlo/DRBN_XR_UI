@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6631468989719705711}
   - component: {fileID: 1159758919939319007}
   - component: {fileID: 58688970547230931}
-  - component: {fileID: 6331765922823119700}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -120,34 +119,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1159758919939319007}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6331765922823119700}
-        m_TargetAssemblyTypeName: ToggleObjects, Assembly-CSharp
-        m_MethodName: ToggleVisibility
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6331765922823119700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3113656984085678925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6cb02dab573eb4b9d6c8ed069f5f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 6336671640664365920}
-  - {fileID: 7366735877280908432}
+      m_Calls: []
 --- !u!1 &6090975010346210223
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +381,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003345720899740398}
-  - component: {fileID: 6134628408884443469}
+  - component: {fileID: 5439725035667059795}
   m_Layer: 5
   m_Name: DashedLine
   m_TagString: Untagged
@@ -436,7 +408,7 @@ RectTransform:
   m_AnchoredPosition: {x: -66.54, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6134628408884443469
+--- !u!114 &5439725035667059795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,14 +417,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6336671640664365920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d5957c1431c3d4b94757dbae666f87, type: 3}
+  m_Script: {fileID: 11500000, guid: deb0719e0761667409ede1c426f06aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 0}
+  startPoint: {fileID: 1003345720899740398}
   endPoint: {fileID: 1003345720899740398}
   dashLength: 0.1
   gapLength: 0.05
-  dashMaterial: {fileID: 2100000, guid: e95c0215a43c5304d96746ada15f01db, type: 2}
+  dashMaterial: {fileID: 2100000, guid: e5c0ad9c999156f41817834a67980656, type: 2}
   lineWidth: 0.01
   targetObject: {fileID: 0}
   minY: -115
