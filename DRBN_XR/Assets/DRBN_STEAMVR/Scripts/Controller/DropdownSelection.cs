@@ -7,6 +7,8 @@ public class DropdownSelection : MonoBehaviour
     public TMP_Dropdown dropdown;               // Dropdown UI
     public ImageLoader imageLoader;             // script ImageLoader
     public SpawnPrefab spawnPrefab;             // script SpawnPrefab
+    public GameObject favoriteLayout;
+    public GameObject messageNoFavorite;
 
     void Start()
     {
@@ -49,9 +51,17 @@ public class DropdownSelection : MonoBehaviour
     {
         if (dropdown.options.Count == 0)
         {
-            spawnPrefab.SetTargetObject(null);
+            spawnPrefab.SetTargetObject(null,null);
             Debug.Log("Dropdown is empty. No prefab will be spawned.");
+            favoriteLayout.gameObject.SetActive(false);
+            messageNoFavorite.SetActive(true);
+
             return;
+        }
+        else
+        {
+            favoriteLayout.gameObject.SetActive(true);
+            messageNoFavorite.SetActive(false);
         }
 
         int index = dropdown.value;
@@ -66,7 +76,7 @@ public class DropdownSelection : MonoBehaviour
 
             if (prefabToSpawn != null)
             {
-                spawnPrefab.SetTargetObject(prefabToSpawn);
+                spawnPrefab.SetTargetObject(prefabToSpawn, selectedOption);
                 Debug.Log("Objet sélectionné : " + prefabToSpawn.name);
             }
             else
