@@ -6,7 +6,7 @@ public class Script_UI_Apparition : MonoBehaviour
 {
     public GameObject canvasToToggle;
     public List<GameObject> gameObjectsToHide;
-    public GameObject gameObjectToShow;
+    public List<GameObject> gameObjectToShow;
 
     private InputDevice targetDevice;
     private bool previousButtonState = false;
@@ -51,9 +51,12 @@ public class Script_UI_Apparition : MonoBehaviour
         if (canvasToToggle != null && canvasToToggle.activeSelf)
         {
             // if not active, activate
-            if (gameObjectToShow != null && !gameObjectToShow.activeSelf)
+            foreach (var obj in gameObjectToShow)
             {
-                gameObjectToShow.SetActive(true);
+                if (obj != null && !obj.activeSelf)
+                {
+                    obj.SetActive(true);
+                }
             }
         }
         // Hide all the gameobjects who need it

@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MovePanelOnButtonPress : MonoBehaviour
 {
-    public RectTransform panel; // Panel to move
+    public List<RectTransform> panel; // Panel to move
     public float moveDistance = -17.7f; // distance on axis X
     public float moveSpeed = 10f; // speed movement
 
@@ -15,7 +16,8 @@ public class MovePanelOnButtonPress : MonoBehaviour
     {
         if (panel != null)
         {
-            originalPosition = panel.localPosition;
+
+            originalPosition = panel[0].localPosition;
             targetPosition = originalPosition;
         }
     }
@@ -24,11 +26,14 @@ public class MovePanelOnButtonPress : MonoBehaviour
     {
         if (isMoving)
         {
-            panel.localPosition = Vector3.Lerp(panel.localPosition, targetPosition, Time.deltaTime * moveSpeed);
+            foreach (var p in panel)
+            {
+                p.localPosition = Vector3.Lerp(p.localPosition, targetPosition, Time.deltaTime * moveSpeed);
 
-            if (Vector3.Distance(panel.localPosition, targetPosition) < 0.1f)
+            if (Vector3.Distance(p.localPosition, targetPosition) < 0.1f)
             {
                 isMoving = false;
+            }
             }
         }
     }
