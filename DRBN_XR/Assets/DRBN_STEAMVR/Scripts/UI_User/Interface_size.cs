@@ -13,7 +13,7 @@ public class Interface_Size : MonoBehaviour
 
     public bool shouldUpdateScale = false; // Flag to control when to update the scale
 
-    void Start()
+    void Awake()
     {
         // slider value
         slider.minValue = 0f;

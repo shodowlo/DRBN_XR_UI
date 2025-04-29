@@ -37,10 +37,10 @@ public class UIAnchor : MonoBehaviour
                 float roundedYaw = Mathf.Round(currentYaw / 30f) * 30f;
 
                 // Update the last yaw
-                lastYaw = roundedYaw;
+                lastYaw = roundedYaw + 1;
 
                 // Update the target position and rotation
-                UpdateTargetPositionAndRotation(roundedYaw);
+                UpdateTargetPositionAndRotation(roundedYaw + 1);
 
                 // Start moving
                 isMoving = true;

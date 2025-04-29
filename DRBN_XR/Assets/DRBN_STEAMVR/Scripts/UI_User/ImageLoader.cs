@@ -171,42 +171,6 @@ public class ImageLoader : MonoBehaviour
         }
     }
 
-    // void Update()
-    // {
-    //     if (dropdown != null)
-    //     {
-    //         List<string> activeImageNames = new List<string>();
-
-    //         foreach (var kvp in imageToggleObjects)
-    //         {
-    //             string imageName = kvp.Key;
-    //             GameObject parentObject = kvp.Value;
-    //             GameObject toggleObject = parentObject.transform.GetChild(0).gameObject;
-
-    //             if (toggleObject != null && toggleObject.activeSelf)
-    //             {
-    //                 activeImageNames.Add(imageName);
-    //             }
-    //         }
-
-    //         List<string> currentDropdownOptions = dropdown.options.Select(option => option.text).ToList();
-    //         if (!activeImageNames.SequenceEqual(currentDropdownOptions))
-    //         {
-    //             dropdown.ClearOptions();
-    //             dropdown.AddOptions(activeImageNames.Select(name => new TMP_Dropdown.OptionData(name)).ToList());
-    //             Debug.Log("ImageLoader: Updated dropdown options.");
-
-    //             if (dropdownSelection != null)
-    //             {
-    //                 dropdownSelection.ForceUpdateSpawnPrefab();
-    //             }
-    //             dropdownSelection.OnDropdownValueChanged(dropdown.value);
-
-                
-    //         }
-    //     }
-    // }
-
     public GameObject GetPrefabByName(string name)
     {
         if (prefabs.TryGetValue(name, out GameObject prefab))
