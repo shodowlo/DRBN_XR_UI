@@ -6580,6 +6580,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6414006452980196552, guid: 4f526bbb71f863d48ae5489bd668b8cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637228295202155185, guid: 4f526bbb71f863d48ae5489bd668b8cb,
+        type: 3}
+      propertyPath: tutorialUI
+      value: 
+      objectReference: {fileID: 868222182}
     - target: {fileID: 8385949587019494133, guid: 4f526bbb71f863d48ae5489bd668b8cb,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6974,6 +6984,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0.5499991, y: -1.5199834}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &868222182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6414006452980196552, guid: 4f526bbb71f863d48ae5489bd668b8cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 817462663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &870657211
 PrefabInstance:
   m_ObjectHideFlags: 0

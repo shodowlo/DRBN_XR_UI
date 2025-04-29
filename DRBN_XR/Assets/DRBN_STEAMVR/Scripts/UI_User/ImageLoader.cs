@@ -142,6 +142,7 @@ public class ImageLoader : MonoBehaviour
                 clickHandler.imageName = name; // image name
                 clickHandler.dropdown = dropdown; // DropdownTMP
                 clickHandler.imageLoader = this; // imageLoader
+                clickHandler.image = image;
                 Debug.Log("ImageLoader: Set click handler for: " + name);
             }
             else

@@ -9,6 +9,9 @@ public class Tutorial : MonoBehaviour
         public GameObject[] objectsToToggle;
     }
 
+    public string preferenceKey = "startTutorial";
+    public GameObject tutorialUI;
+
     public Step[] steps; // Array of steps
 
     private int step = 0; // Step counter
@@ -19,7 +22,12 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-        Init();
+        bool shouldInit = PlayerPrefs.GetInt(preferenceKey, 0) == 1;
+
+        if (shouldInit)
+        {
+            Init();
+        }
     }
 
     void Update()
@@ -32,7 +40,7 @@ public class Tutorial : MonoBehaviour
         // Prendre le premier step l'afficher et cacher les autres
         step = 0;
         deactiveAndActiveCurrentGameObjects(step);
-        gameObject.SetActive(true);
+        tutorialUI.SetActive(true);
 
         //desactiver le bouton previous step
         previousStepButton.SetActive(false);
@@ -44,7 +52,7 @@ public class Tutorial : MonoBehaviour
         // si on est a la fin des steps, on desactive le tuto
         if (step >= steps.Length)
         {
-            gameObject.SetActive(false);
+            tutorialUI.SetActive(false);
             return;
         }
         //on desactive le step precedent et on active le step suivant

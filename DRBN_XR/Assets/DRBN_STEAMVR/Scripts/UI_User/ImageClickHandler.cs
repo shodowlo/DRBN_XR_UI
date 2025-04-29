@@ -11,6 +11,9 @@ public class ImageClickHandler : MonoBehaviour
     public ImageLoader imageLoader; // Script ImageLoader
     private Button button; // Composant Button pour gérer les clics
 
+    public Sprite image;
+
+
     void Start()
     {
         button = GetComponent<Button>();
@@ -37,7 +40,7 @@ public class ImageClickHandler : MonoBehaviour
             else
             {
                 // add the prefab
-                dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(imageName) });
+                dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(imageName,image,Color.white) });
                 Debug.Log("ImageClickHandler: Added item to dropdown: " + imageName);
             }
 
