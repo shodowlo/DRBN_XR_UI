@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -267,7 +267,10 @@ GameObject:
   - component: {fileID: 454951195409431718}
   - component: {fileID: 5270493206774254672}
   - component: {fileID: 139520561465151367}
+  - component: {fileID: 624082812187000373}
   - component: {fileID: 5611980784972489467}
+  - component: {fileID: 5948966199949523271}
+  - component: {fileID: 8955717663197927635}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -332,6 +335,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &624082812187000373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156619363132355611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf543123eaa89b84c9cacf67520c9749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineToEnable: {fileID: 8955717663197927635}
+  shadowToEnable: {fileID: 5948966199949523271}
+  shadowToDisable: {fileID: 5611980784972489467}
+  toggleToToggle: {fileID: 0}
+  dropdownToShow: {fileID: 0}
+  buttonToPress: {fileID: 58688970547230931}
+  enableShadowAnimation: 1
+  shadowStart: {x: 0, y: 0}
+  shadowEnd: {x: 2, y: -2}
 --- !u!114 &5611980784972489467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +370,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &5948966199949523271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156619363132355611}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &8955717663197927635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156619363132355611}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: -0.5, y: -0.5}
   m_UseGraphicAlpha: 1
 --- !u!1 &6299365518002772922
 GameObject:
@@ -504,7 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -532,6 +586,9 @@ GameObject:
   - component: {fileID: 3831794833711089428}
   - component: {fileID: 7385129049829958063}
   - component: {fileID: 8958483513856830387}
+  - component: {fileID: 5978479923711214306}
+  - component: {fileID: 66635151752464052}
+  - component: {fileID: 1229440885703342391}
   m_Layer: 5
   m_Name: DeleteButton
   m_TagString: Untagged
@@ -640,3 +697,54 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5978479923711214306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846268804631574873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf543123eaa89b84c9cacf67520c9749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineToEnable: {fileID: 1229440885703342391}
+  shadowToEnable: {fileID: 66635151752464052}
+  shadowToDisable: {fileID: 0}
+  toggleToToggle: {fileID: 0}
+  dropdownToShow: {fileID: 0}
+  buttonToPress: {fileID: 0}
+  enableShadowAnimation: 1
+  shadowStart: {x: 0, y: 0}
+  shadowEnd: {x: 1, y: -1}
+--- !u!114 &66635151752464052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846268804631574873}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1229440885703342391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846268804631574873}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: -0.5, y: -0.5}
+  m_UseGraphicAlpha: 1
