@@ -21,7 +21,7 @@
 //         }
 //         else
 //         {
-//             float sliderValue = 0.25f;
+//             float sliderValue = 0.5f;
 //             interfaceSize.OnSliderReleased(sliderValue);
 //         }
 
@@ -54,6 +54,7 @@ public class SimulationReset : MonoBehaviour
     public Slider slider;
     public GameObject settings;
     private Interface_Size interfaceSize;
+    public RectTransform content; // Référence au Content du GridLayoutGroup
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class SimulationReset : MonoBehaviour
         }
         else
         {
-            float sliderValue = 0.25f;
+            float sliderValue = 0.50f;
             interfaceSize.OnSliderReleased(sliderValue);
         }
     }

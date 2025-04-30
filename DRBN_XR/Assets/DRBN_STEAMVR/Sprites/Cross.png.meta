@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f63054e84ecc8ba4fb24e63e8b1e2954
+guid: 1a8043882d2728842b571d68ea79d101
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Settings
+      name: Cross
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 16
+        y: 16
+        width: 480
+        height: 480
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,7 +165,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Settings: 7482667652216324306
+      Cross: 7482667652216324306
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

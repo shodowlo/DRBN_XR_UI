@@ -14,8 +14,8 @@ public class Script_Reset_Option : MonoBehaviour
 
     public void ResetOption()
     {
-        // Set slider value to 0.25
-        float defaultSliderValue = 0.25f;
+        // Set slider value to 0.5
+        float defaultSliderValue = 0.5f;
         UI_size.value = defaultSliderValue;
 
         // Save the current slider value
