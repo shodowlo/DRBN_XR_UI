@@ -6301,7 +6301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 324689145}
   settings: {fileID: 0}
-  content: {fileID: 0}
 --- !u!114 &685944254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9141,7 +9140,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targetImageControllerBackground
       value: 
-      objectReference: {fileID: 706957925}
+      objectReference: {fileID: 1023456283}
     - target: {fileID: 1192141914112530932, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -10901,7 +10900,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'tabs.Array.data[1].scriptsToDeactivate.Array.data[1]'
       value: 
-      objectReference: {fileID: 1946228059}
+      objectReference: {fileID: 0}
     - target: {fileID: 5130191447023790711, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_IsActive
@@ -11988,6 +11987,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8710303677217811372, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8737934596907988189, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_Mesh
@@ -12021,6 +12025,11 @@ PrefabInstance:
     - target: {fileID: 8771402553294282671, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786593809449351024, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8916066855031931855, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
@@ -12209,6 +12218,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023456283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8786593809449351024, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1023456279}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1023644795
@@ -18010,7 +18031,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 324689145}
   settings: {fileID: 1520656905}
-  content: {fileID: 0}
 --- !u!4 &1589951689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
