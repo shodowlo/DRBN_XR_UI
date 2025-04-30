@@ -8,8 +8,8 @@ public class Interface_Size : MonoBehaviour
     public Slider slider;
 
     [Header("Scale minimal and maximal")]
-    public float scaleMin = 0.01f;
-    public float scaleMax = 0.08f;
+    public float scaleMin = 0.003f;
+    public float scaleMax = 0.009f;
 
     public bool shouldUpdateScale = false; // Flag to control when to update the scale
 
