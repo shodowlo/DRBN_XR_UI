@@ -8,13 +8,8 @@ public class Script_Reset_Option : MonoBehaviour
     public Interface_Size interfaceSize;
     public TimeControl timeControl;
 
-    void Start()
-    {
-    }
-
     public void ResetOption()
     {
-        // Set slider value to 0.5
         float defaultSliderValue = 0.5f;
         UI_size.value = defaultSliderValue;
 
@@ -24,9 +19,7 @@ public class Script_Reset_Option : MonoBehaviour
         // Reset the time scale to normal
         Time.timeScale = 1f;
 
-        // Allow scale update
-        interfaceSize.shouldUpdateScale = true;
-        interfaceSize.UpdateScale(UI_size.value);
+        interfaceSize.OnSliderReleased(UI_size.value);
 
         if (timeControl != null)
         {
