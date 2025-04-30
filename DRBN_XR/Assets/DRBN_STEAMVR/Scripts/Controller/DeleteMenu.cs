@@ -108,7 +108,7 @@ public class DeleteMenu : MonoBehaviour
         if (entryRect != null)
         {
             entryHeight = entryRect.rect.height;
-            AdjustContentHeight(entryHeight); // Augmenter la taille du content
+            AdjustContentHeight(entryHeight+5); // Augmenter la taille du content
         }
         else
         {
@@ -152,7 +152,7 @@ public class DeleteMenu : MonoBehaviour
             Destroy(toRemove.entryObject);
 
             // Réduire la taille du content
-            AdjustContentHeight(-toRemove.entryHeight);
+            AdjustContentHeight(-toRemove.entryHeight-5);
         }
     }
 
@@ -202,7 +202,22 @@ public class DeleteMenu : MonoBehaviour
             if (contentRect != null)
             {
                 Vector2 size = contentRect.sizeDelta;
-                size.y += deltaHeight + 5;
+                size.y += deltaHeight;
+
+                contentRect.sizeDelta = size;
+            }
+        }
+    }
+
+    private void setContentHeight(float height)
+    {
+        if (content != null)
+        {
+            RectTransform contentRect = content.GetComponent<RectTransform>();
+            if (contentRect != null)
+            {
+                Vector2 size = contentRect.sizeDelta;
+                size.y = height;
 
                 contentRect.sizeDelta = size;
             }
@@ -230,6 +245,6 @@ public class DeleteMenu : MonoBehaviour
 
         // Réinitialiser la liste et ajuster la taille du contenu
         entries.Clear();
-        AdjustContentHeight(-content.GetComponent<RectTransform>().rect.height);
+        setContentHeight(30);
     }
 }

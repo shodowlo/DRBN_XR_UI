@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MenuController : MonoBehaviour
         public GameObject tabPanel;
         // Bouton de l'onglet
         public GameObject tabButton;
+        public Image tabImage;
         // L'image qui indique visuellement si l'onglet est actif ou non
         public GameObject tabSelector;
         // Title de l'onglet
@@ -33,6 +35,8 @@ public class MenuController : MonoBehaviour
     private bool isAnimating = false;
     private bool isMenuOpen = false;
 
+    public int CurrentTabIndex { get; private set; } = 0;
+
     void Start()
     {
         Init();
@@ -45,7 +49,40 @@ public class MenuController : MonoBehaviour
         {
 
             int index = i; // Nécessaire pour la fermeture de la boucle
-            tabs[i].tabButton.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => ChangeTab(index));
+            var button = tabs[i].tabButton.GetComponent<UnityEngine.UI.Button>();
+            button.onClick.AddListener(() => ChangeTab(index));
+
+            // Initialiser l'alpha des images à 60
+            SetImageAlpha(tabs[i].tabImage, 60f);
+
+            // Ajouter events pour hover
+            UnityEngine.EventSystems.EventTrigger trigger = tabs[i].tabButton.GetComponent<UnityEngine.EventSystems.EventTrigger>();
+            if (trigger == null)
+                trigger = tabs[i].tabButton.AddComponent<UnityEngine.EventSystems.EventTrigger>();
+
+            // Entrée souris
+            var entryEnter = new UnityEngine.EventSystems.EventTrigger.Entry
+            {
+                eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter
+            };
+            entryEnter.callback.AddListener((data) =>
+            {
+                if (index != CurrentTabIndex)
+                    SetImageAlpha(tabs[index].tabImage, 255f);
+            });
+            trigger.triggers.Add(entryEnter);
+
+            // Sortie souris
+            var entryExit = new UnityEngine.EventSystems.EventTrigger.Entry
+            {
+                eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit
+            };
+            entryExit.callback.AddListener((data) =>
+            {
+                if (index != CurrentTabIndex)
+                    SetImageAlpha(tabs[index].tabImage, 60f);
+            });
+            trigger.triggers.Add(entryExit);
         }
         ChangeTab(0);
     }
@@ -60,6 +97,8 @@ public class MenuController : MonoBehaviour
             tabs[i].tabPanel.SetActive(false);
             tabs[i].tabSelector.SetActive(false);
             tabs[i].tabTitle.SetActive(false);
+
+            SetImageAlpha(tabs[i].tabImage, 60f);
 
             if (tabs[i].objectsToHide != null)
             {
@@ -94,6 +133,8 @@ public class MenuController : MonoBehaviour
         tabs[index].tabSelector.SetActive(true);
         tabs[index].tabTitle.SetActive(true);
 
+        SetImageAlpha(tabs[index].tabImage, 255f);
+
         if (tabs[index].objectsToShow != null)
         {
             foreach (GameObject obj in tabs[index].objectsToShow)
@@ -111,6 +152,7 @@ public class MenuController : MonoBehaviour
                     script.enabled = true;
             }
         }
+        CurrentTabIndex = index;
     }
 
 
@@ -133,6 +175,16 @@ public class MenuController : MonoBehaviour
                 {
                     script.enabled = true;
                 }
+            }
+        }
+
+        //show les objects a show
+        if (tabs.Length > 0 && tabs[0].objectsToShow != null)
+        {
+            foreach (GameObject obj in tabs[0].objectsToShow)
+            {
+                if (obj != null)
+                    obj.SetActive(true);
             }
         }
         StartCoroutine(AnimateMenu(endTransform, true));
@@ -226,5 +278,15 @@ public class MenuController : MonoBehaviour
             }
         }
     }
+
+    private void SetImageAlpha(Image image, float alpha)
+{
+    if (image != null)
+    {
+        Color color = image.color;
+        color.a = alpha / 255f;
+        image.color = color;
+    }
+}
 
 }
