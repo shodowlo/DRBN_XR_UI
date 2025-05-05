@@ -30,10 +30,10 @@ public class MovePanelOnButtonPress : MonoBehaviour
             {
                 p.localPosition = Vector3.Lerp(p.localPosition, targetPosition, Time.deltaTime * moveSpeed);
 
-            if (Vector3.Distance(p.localPosition, targetPosition) < 0.1f)
-            {
-                isMoving = false;
-            }
+                if (Vector3.Distance(p.localPosition, targetPosition) < 0.1f)
+                {
+                    isMoving = false;
+                }
             }
         }
     }
