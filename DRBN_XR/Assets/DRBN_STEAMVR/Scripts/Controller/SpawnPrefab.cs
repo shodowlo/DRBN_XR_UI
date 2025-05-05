@@ -4,6 +4,8 @@ using UnityEngine.XR;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SpawnPrefab : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class SpawnPrefab : MonoBehaviour
     private InputDevice targetDevice;
     public DeleteMenu deleteMenu;
     private bool previousButtonState = false;
+    public MonoBehaviour deleteScript;
 
     void Start()
     {
@@ -54,7 +57,23 @@ public class SpawnPrefab : MonoBehaviour
         if (prefabToSpawn != null && spawnPoint != null)
         {
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
-            deleteMenu.AddEntry(prefabName, spawnedObject);
+            Button deleteButton = deleteMenu.AddEntry(prefabName, spawnedObject);
+
+            XRGrabInteractable[] interactables = spawnedObject.GetComponentsInChildren<XRGrabInteractable>(true);
+            Debug.Log("Interactables found: " + interactables.Length);
+
+            foreach (var interactable in interactables)
+            {
+                interactable.selectEntered.AddListener((SelectEnterEventArgs args) =>
+                {
+                    if(deleteScript != null && deleteScript.enabled)
+                    {
+                        Destroy(interactable.gameObject);
+                        // Supprime cet objet depuis le menu
+                        deleteButton.onClick.Invoke();
+                    }
+                });
+            }
         }
         else
         {

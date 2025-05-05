@@ -42,12 +42,12 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
-    public void AddEntry(string labelText, GameObject spawnedObject)
+    public Button AddEntry(string labelText, GameObject spawnedObject)
     {
         if (entryPrefab == null || content == null)
         {
             Debug.LogError("EntryPrefab ou Content non assigné !");
-            return;
+            return null;
         }
 
         // Instanciation sous le GameObject auquel ce script est attaché
@@ -63,9 +63,11 @@ public class DeleteMenu : MonoBehaviour
         // Gestion des boutons
         Button[] buttons = newEntry.GetComponentsInChildren<Button>();
 
+        Button deleteButton = null;
+
         if (buttons.Length >= 2)
         {
-            Button deleteButton = buttons[0];
+            deleteButton = buttons[0];
             deleteButton.onClick.AddListener(() => RemoveEntry(newEntry));
 
             Button highlightButton = buttons[1];
@@ -130,6 +132,9 @@ public class DeleteMenu : MonoBehaviour
         entryClick.callback.AddListener((eventData) => RemoveEntry(newEntry));  // Appel de RemoveEntry pour supprimer l'entrée
 
         eventTrigger.triggers.Add(entryClick);  // Ajouter l'événement au EventTrigger de spawnedObject
+
+        //retourne le bouton pour supprimer
+        return deleteButton;
     }
 
     public void RemoveEntry(GameObject entryObject)
@@ -246,5 +251,17 @@ public class DeleteMenu : MonoBehaviour
         // Réinitialiser la liste et ajuster la taille du contenu
         entries.Clear();
         setContentHeight(30);
+    }
+
+    public Button GetDeleteButtonForObject(GameObject spawnedObject)
+    {
+        foreach (var entry in entries)
+        {
+            if (entry.spawnedObject == spawnedObject)
+            {
+                return entry.entryObject.GetComponent<Button>();
+            }
+        }
+        return null;
     }
 }

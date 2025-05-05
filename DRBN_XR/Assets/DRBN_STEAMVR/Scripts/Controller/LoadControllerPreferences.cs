@@ -5,11 +5,14 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
+using UnityEngine.UI;
 public class LoadControllerPreferences : MonoBehaviour
 {
     public String preferenceKeyJoystick = "joystick";
     public String preferenceKeyTeleport = "teleportation";
     public String preferenceKeyTurn = "turn";
+
+    public String preferenceKeyFly = "fly";
 
     public TeleportationProvider teleportationProvider;
     public XRRayInteractor rayInteractor;
@@ -22,6 +25,22 @@ public class LoadControllerPreferences : MonoBehaviour
     private int isTeleportEnabled;
 
     private int turnValue;
+    private int isFlyEnabled;
+
+    [Header("Pour le mode droitier")]
+    public GameObject LeftControllerVisual;
+    public GameObject RightControllerVisual;
+    public GameObject LeftControllerVisualUniversalController;
+    public GameObject RightControllerVisualUniversalController;
+    public GameObject CanvasButtonOnController;
+    public GameObject ControllerSettings;
+    public GameObject ControllerHelpMenu;
+    public GameObject ControllerSpawnMenu;
+    public GameObject Clock;
+    public GameObject TextHoverController;
+    public GameObject Plus;
+    public GameObject Minus;
+
 
     private UnityEngine.XR.Interaction.Toolkit.InteractionLayerMask originalInteractionLayers;
     void Start()
@@ -33,7 +52,10 @@ public class LoadControllerPreferences : MonoBehaviour
         LoadTeleportPreference();
 
         LoadTurnPreference();
+
+        LoadFlyPreference();
         
+        //LoadLeftPreference();
     }
 
     // Update is called once per frame
@@ -73,6 +95,20 @@ public class LoadControllerPreferences : MonoBehaviour
         
     }
 
+    private void LoadFlyPreference()
+    {
+        isFlyEnabled = PlayerPrefs.GetInt(preferenceKeyFly, 0);
+        Debug.Log("Loading fly preference: " + isFlyEnabled);
+        if (isFlyEnabled == 1)
+        {
+            moveProvider.enableFly = true;
+        }
+        else
+        {
+            moveProvider.enableFly = false;
+        }
+    }
+
     private void LoadTurnPreference()
     {
         turnValue = PlayerPrefs.GetInt(preferenceKeyTurn, 0);
@@ -93,5 +129,34 @@ public class LoadControllerPreferences : MonoBehaviour
                 snapTurnProvider.enabled = false;
                 break;
         }
+    }
+
+    private void LoadLeftPreference()
+    {
+        Vector3 newPosition;
+
+        CanvasButtonOnController.transform.SetParent(RightControllerVisual.transform);
+
+        ControllerSettings.transform.SetParent(RightControllerVisual.transform);
+        newPosition = ControllerSettings.transform.localPosition;
+        newPosition.x = -0.5f;
+        // Ajuster la position de ControllerSettings pour qu'il soit à gauche du contrôleur
+        ControllerSettings.transform.localPosition = newPosition;
+
+        ControllerHelpMenu.transform.SetParent(RightControllerVisual.transform);
+        newPosition = ControllerHelpMenu.transform.localPosition;
+        newPosition.x = -0.5f;
+        ControllerHelpMenu.transform.localPosition = newPosition;
+
+        ControllerSpawnMenu.transform.SetParent(RightControllerVisual.transform);
+        newPosition = ControllerSpawnMenu.transform.localPosition;
+        newPosition.x = -0.5f;
+        ControllerSpawnMenu.transform.localPosition = newPosition;
+
+        Clock.transform.SetParent(RightControllerVisual.transform);
+        TextHoverController.transform.SetParent(RightControllerVisual.transform);
+
+        Minus.transform.SetParent(LeftControllerVisualUniversalController.transform);
+        Plus.transform.SetParent(LeftControllerVisualUniversalController.transform);
     }
 }
