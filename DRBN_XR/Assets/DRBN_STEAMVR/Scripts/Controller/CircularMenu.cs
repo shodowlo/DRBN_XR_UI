@@ -103,7 +103,7 @@ public class CircularMenu : MonoBehaviour
         {
             if (button3D[i].isHovering)
             {
-                button3D[i].hoverTimer += Time.deltaTime;
+                button3D[i].hoverTimer += Time.unscaledDeltaTime;
                 if (button3D[i].hoverTimer >= hoverTime && !button3D[i].hoverObjectsEnabled)
                 {
                     EnableHoverObjects(i);
@@ -113,12 +113,12 @@ public class CircularMenu : MonoBehaviour
             if (!button3D[i].isAnimating)
                 continue;
 
-            button3D[i].button.transform.localPosition = Vector3.Lerp(button3D[i].button.transform.localPosition, button3D[i].targetPosition, Time.deltaTime * moveSpeed);
-            button3D[i].button.transform.localScale = Vector3.Lerp(button3D[i].button.transform.localScale, button3D[i].targetScale, Time.deltaTime * moveSpeed);
+            button3D[i].button.transform.localPosition = Vector3.Lerp(button3D[i].button.transform.localPosition, button3D[i].targetPosition, Time.unscaledDeltaTime * moveSpeed);
+            button3D[i].button.transform.localScale = Vector3.Lerp(button3D[i].button.transform.localScale, button3D[i].targetScale, Time.unscaledDeltaTime * moveSpeed);
 
             if (button3D[i].buttonImage != null)
             {
-                button3D[i].buttonImage.color = Color.Lerp(button3D[i].buttonImage.color, button3D[i].targetColor, Time.deltaTime * moveSpeed);
+                button3D[i].buttonImage.color = Color.Lerp(button3D[i].buttonImage.color, button3D[i].targetColor, Time.unscaledDeltaTime * moveSpeed);
             }
 
             if (Vector3.Distance(button3D[i].button.transform.localPosition, button3D[i].targetPosition) < 0.01f &&

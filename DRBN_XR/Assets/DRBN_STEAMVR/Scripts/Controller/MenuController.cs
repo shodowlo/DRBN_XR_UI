@@ -234,7 +234,7 @@ public class MenuController : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Slerp(startRot, targetRot, t);
             gameObject.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
 
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 
