@@ -98,7 +98,7 @@ public class HoverEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
             float t = time / duration;
             shadow.effectDistance = Vector2.Lerp(start, end, t);
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
