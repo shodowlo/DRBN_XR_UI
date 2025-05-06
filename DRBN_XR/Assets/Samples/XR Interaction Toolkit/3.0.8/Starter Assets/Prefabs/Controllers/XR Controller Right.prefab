@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 1206631108864183392}
   - component: {fileID: 2440155207967929778}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Canvas Image Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 1342643458133515598}
   - component: {fileID: 1392639971331270213}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Image Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
