@@ -8390,6 +8390,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1004889271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6701782680793280303, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1023456279}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1006352746
 GameObject:
   m_ObjectHideFlags: 0
@@ -8872,6 +8878,7 @@ MonoBehaviour:
   preferenceKeyTeleport: teleportation
   preferenceKeyTurn: turn
   preferenceKeyFly: fly
+  preferenceKeyLeft: left
   teleportationProvider: {fileID: 1023456282}
   rayInteractor: {fileID: 1023456281}
   snapTurnProvider: {fileID: 343624056}
@@ -8889,6 +8896,9 @@ MonoBehaviour:
   TextHoverController: {fileID: 649337022}
   Plus: {fileID: 633142773}
   Minus: {fileID: 813058843}
+  CanvasSlidersOnController: {fileID: 1004889271}
+  SpawnPoint: {fileID: 1622884428}
+  CanvasImageSpawn: {fileID: 567047249}
 --- !u!114 &1006427757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11073,6 +11083,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5458941127346252411, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: methodName
+      value: LoadLeftPreference
+      objectReference: {fileID: 0}
+    - target: {fileID: 5458941127346252411, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 1006427752}
     - target: {fileID: 5485189554782810918, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -12227,10 +12247,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1665821952}
-    - targetCorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1804561978}
     - targetCorrespondingSourceObject: {fileID: 1670256625, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       insertIndex: -1
@@ -17928,7 +17944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1579343357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20309,7 +20325,7 @@ RectTransform:
   m_Father: {fileID: 10302917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20925,37 +20941,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792886454}
   m_CullTransparentMesh: 1
---- !u!1 &1804561977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1804561978}
-  m_Layer: 0
-  m_Name: Spawn point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1804561978
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804561977}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1946228058}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1809340701
 GameObject:
   m_ObjectHideFlags: 0
@@ -21439,8 +21424,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1389299217}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21973,12 +21958,6 @@ MonoBehaviour:
   gameObjectToShow:
   - {fileID: 330126293}
   - {fileID: 834135493}
---- !u!4 &1946228058 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1023456279}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1959401550 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2107498639076738085, guid: f6336ac4ac8b4d34bc5072418cdc62a0,

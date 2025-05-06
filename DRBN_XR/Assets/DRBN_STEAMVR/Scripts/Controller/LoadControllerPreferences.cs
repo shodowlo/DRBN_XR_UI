@@ -3,9 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
-using UnityEngine.UI;
 public class LoadControllerPreferences : MonoBehaviour
 {
     public String preferenceKeyJoystick = "joystick";
@@ -155,7 +153,7 @@ public class LoadControllerPreferences : MonoBehaviour
         SetPosition(Clock.transform, mainParent, 0f, 0f,0f);
         SetPosition(TextHoverController.transform, mainParent, 0f,0f,0f);
         SetPosition(CanvasSlidersOnController.transform, mainParent, 0f, -0.0207f, 0.051f);
-        SetPosition(SpawnPoint.transform, mainParent, 0f,0f,0.54f);
+        SetPosition(SpawnPoint.transform, mainParent, 0f,0f,-0.54f);
 
         // Boutons - vont toujours sur le contrôleur opposé
         SetPosition(Minus.transform, altParent, 0f,0.00639f, -0.003570002f);
