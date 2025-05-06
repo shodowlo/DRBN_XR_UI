@@ -6949,6 +6949,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6091639366432509045, guid: 4f526bbb71f863d48ae5489bd668b8cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6414006452980196552, guid: 4f526bbb71f863d48ae5489bd668b8cb,
         type: 3}
       propertyPath: m_IsActive
@@ -6959,6 +6964,11 @@ PrefabInstance:
       propertyPath: tutorialUI
       value: 
       objectReference: {fileID: 868222182}
+    - target: {fileID: 7532348613614253613, guid: 4f526bbb71f863d48ae5489bd668b8cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8385949587019494133, guid: 4f526bbb71f863d48ae5489bd668b8cb,
         type: 3}
       propertyPath: m_LocalScale.x
