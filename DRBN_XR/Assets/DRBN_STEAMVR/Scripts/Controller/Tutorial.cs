@@ -22,7 +22,7 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-        bool shouldInit = PlayerPrefs.GetInt(preferenceKey, 0) == 1;
+        bool shouldInit = PlayerPrefs.GetInt(preferenceKey, 1) == 1;
 
         if (shouldInit)
         {
@@ -30,10 +30,6 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
 
     public void Init()
     {

@@ -13,6 +13,7 @@ public class LoadControllerPreferences : MonoBehaviour
     public String preferenceKeyTurn = "turn";
 
     public String preferenceKeyFly = "fly";
+    public String preferenceKeyLeft = "left";
 
     public TeleportationProvider teleportationProvider;
     public XRRayInteractor rayInteractor;
@@ -26,8 +27,9 @@ public class LoadControllerPreferences : MonoBehaviour
 
     private int turnValue;
     private int isFlyEnabled;
+    private int isLeftEnabled;
 
-    [Header("Pour le mode droitier")]
+    [Header("Pour le mode gaucher")]
     public GameObject LeftControllerVisual;
     public GameObject RightControllerVisual;
     public GameObject LeftControllerVisualUniversalController;
@@ -40,6 +42,9 @@ public class LoadControllerPreferences : MonoBehaviour
     public GameObject TextHoverController;
     public GameObject Plus;
     public GameObject Minus;
+    public GameObject CanvasSlidersOnController;
+    public GameObject SpawnPoint;
+    public GameObject CanvasImageSpawn;
 
 
     private UnityEngine.XR.Interaction.Toolkit.InteractionLayerMask originalInteractionLayers;
@@ -55,7 +60,7 @@ public class LoadControllerPreferences : MonoBehaviour
 
         LoadFlyPreference();
         
-        //LoadLeftPreference();
+        LoadLeftPreference();
     }
 
     // Update is called once per frame
@@ -133,30 +138,39 @@ public class LoadControllerPreferences : MonoBehaviour
 
     private void LoadLeftPreference()
     {
-        Vector3 newPosition;
+        isLeftEnabled = PlayerPrefs.GetInt(preferenceKeyLeft, 0);
+        Debug.Log("Loading left preference: " + isLeftEnabled);
 
-        CanvasButtonOnController.transform.SetParent(RightControllerVisual.transform);
+        bool isRight = isLeftEnabled == 1;
 
-        ControllerSettings.transform.SetParent(RightControllerVisual.transform);
-        newPosition = ControllerSettings.transform.localPosition;
-        newPosition.x = -0.5f;
-        // Ajuster la position de ControllerSettings pour qu'il soit à gauche du contrôleur
-        ControllerSettings.transform.localPosition = newPosition;
+        // Choix des parents selon la préférence
+        Transform mainParent = isRight ? RightControllerVisual.transform : LeftControllerVisual.transform;
+        Transform altParent = isRight ? LeftControllerVisualUniversalController.transform : RightControllerVisualUniversalController.transform;
 
-        ControllerHelpMenu.transform.SetParent(RightControllerVisual.transform);
-        newPosition = ControllerHelpMenu.transform.localPosition;
-        newPosition.x = -0.5f;
-        ControllerHelpMenu.transform.localPosition = newPosition;
+        // Éléments à positionner sur le contrôleur principal
+        SetPosition(CanvasButtonOnController.transform, mainParent, 0f, 0.0102f, -0.0025f);
+        SetPosition(ControllerSettings.transform, mainParent, isRight ? -0.5f : 0f, 0f, 0f);
+        SetPosition(ControllerHelpMenu.transform, mainParent, isRight ? -0.45f : 0f, 0f, 0f);
+        SetPosition(ControllerSpawnMenu.transform, mainParent, isRight ? -0.5f : 0f, 0f,0f);
+        SetPosition(Clock.transform, mainParent, 0f, 0f,0f);
+        SetPosition(TextHoverController.transform, mainParent, 0f,0f,0f);
+        SetPosition(CanvasSlidersOnController.transform, mainParent, 0f, -0.0207f, 0.051f);
+        SetPosition(SpawnPoint.transform, mainParent, 0f,0f,0.54f);
 
-        ControllerSpawnMenu.transform.SetParent(RightControllerVisual.transform);
-        newPosition = ControllerSpawnMenu.transform.localPosition;
-        newPosition.x = -0.5f;
-        ControllerSpawnMenu.transform.localPosition = newPosition;
-
-        Clock.transform.SetParent(RightControllerVisual.transform);
-        TextHoverController.transform.SetParent(RightControllerVisual.transform);
-
-        Minus.transform.SetParent(LeftControllerVisualUniversalController.transform);
-        Plus.transform.SetParent(LeftControllerVisualUniversalController.transform);
+        // Boutons - vont toujours sur le contrôleur opposé
+        SetPosition(Minus.transform, altParent, 0f,0.00639f, -0.003570002f);
+        SetPosition(Plus.transform, altParent, 0f,0.00639f, -0.003570002f);
+        SetPosition(CanvasImageSpawn.transform, altParent, 0f, 0.02f, -0.0346f);
     }
+
+    private void SetPosition(Transform item, Transform parent, float newX, float newY, float newZ)
+    {
+        item.SetParent(parent);
+        Vector3 pos = item.localPosition;
+        pos.x = newX;
+        pos.y = newY;
+        pos.z = newZ;
+        item.localPosition = pos;
+    }
+
 }
