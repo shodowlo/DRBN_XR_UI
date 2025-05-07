@@ -4,14 +4,26 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// DeleteMenu class to manage a menu of entries that can be added and removed dynamically.
+/// It is used to list / delete / outline the prefab that we spawned in the scene.
+/// </summary>
 // La classe pour stocker une entrée
 [System.Serializable]
+//Each entry of the delete menu will be stored in this class
 public class MenuEntry
 {
-    public GameObject entryObject;        // L'objet d'interface instancié
-    public GameObject spawnedObject;       // L'objet 3D associé
-    public GameObject dashedLineObject;    // L'objet qui contient le DashedLineMol
-    public float entryHeight;               // Largeur de l'entrée (en pixels)
+    public GameObject entryObject;
+    // The entry, here a prefab containing the UI
+
+    public GameObject spawnedObject;
+    // The spawn prefab in the scene
+
+    public GameObject dashedLineObject;
+    //The line that will be drawn between the entry and the spawned prefab
+
+    public float entryHeight;
+    // Will be calculated automatically. The height of the entry prefab (to adjust de the height og the "content" GameObject in the scroll view)
 
     public MenuEntry(GameObject entryObject, GameObject spawnedObject, GameObject dashedLineObject, float entryHeight)
     {
@@ -24,14 +36,21 @@ public class MenuEntry
 
 public class DeleteMenu : MonoBehaviour
 {
-    public GameObject entryPrefab;  // Le prefab de l'entrée
-    public GameObject content;      // Le conteneur du scroll (si nécessaire pour ajuster la taille du contenu)
-    public Button deleteAllButton; // Le bouton pour supprimer toutes les entrées
+    [Tooltip("Prefab for the entry in the menu, must contain a TextMeshProUGUI and two buttons, the first one to delete the entry and the second one to highlight it")]
+    public GameObject entryPrefab;
 
-    private List<MenuEntry> entries = new List<MenuEntry>(); // La liste d'entrées
+    [Tooltip("Container for the scroll view, needed to adjust the size of the content (for the scrollbar)")]
+    public GameObject content;
+
+    [Tooltip("Button to delete all entries, without listeners (wiil be added in the Start method)")]
+    public Button deleteAllButton;
+
+    // The list of entries in the menu
+    private List<MenuEntry> entries = new List<MenuEntry>();
 
     private void Start()
     {
+        // adding the listener to the delete all button
         if (deleteAllButton != null)
         {
             deleteAllButton.onClick.AddListener(DeleteAllEntries);
@@ -46,14 +65,14 @@ public class DeleteMenu : MonoBehaviour
     {
         if (entryPrefab == null || content == null)
         {
-            Debug.LogError("EntryPrefab ou Content non assigné !");
+            Debug.LogError("EntryPrefab or Content is not assigned in the inspector.");
             return null;
         }
 
-        // Instanciation sous le GameObject auquel ce script est attaché
+        // Instantiate under the GameObject to which this script is attached
         GameObject newEntry = Instantiate(entryPrefab, transform);
 
-        // Modifier le texte de l'entrée
+        // Modify the text of the entry
         TextMeshProUGUI label = newEntry.GetComponentInChildren<TextMeshProUGUI>();
         if (label != null)
         {
@@ -74,7 +93,7 @@ public class DeleteMenu : MonoBehaviour
             highlightButton.onClick.AddListener(() => ToggleSelected(newEntry));
         }
 
-        // Chercher le GameObject contenant DashedLineMol
+        // Search for the DashedLine component in the prefab
         DashedLine dashedLineScript = newEntry.GetComponentInChildren<DashedLine>(true);
         GameObject startDashedLineObject = null;
 
@@ -84,61 +103,50 @@ public class DeleteMenu : MonoBehaviour
 
             if (startDashedLineObject != null)
             {
-                // Trouver le dernier enfant de la chaîne
+                // Find the last child of the spawned object -> it will be the start point of the dashed line
                 Transform lastChild = startDashedLineObject.transform;
                 while (lastChild.childCount > 0)
                 {
                     lastChild = lastChild.GetChild(0);
                 }
 
-                // Affecter les valeurs
                 dashedLineScript.startPoint = lastChild;
                 dashedLineScript.targetObject = content;
 
-                // Désactiver le GameObject contenant DashedLineMol
+                // We deactivate the dashed line at the beginning (will be activated with the highlight button)
                 dashedLineScript.gameObject.SetActive(false);
             }
         }
         else
         {
-            Debug.LogWarning("Aucun DashedLineMol trouvé dans le prefab.");
+            Debug.LogWarning("DashedLine script not found in the prefab!");
         }
 
-        // Obtenir la largeur de l'élément
+        // Obtaint the height of the entry prefab
         float entryHeight = 0f;
         RectTransform entryRect = newEntry.GetComponent<RectTransform>();
         if (entryRect != null)
         {
             entryHeight = entryRect.rect.height;
-            AdjustContentHeight(entryHeight+5); // Augmenter la taille du content
+            AdjustContentHeight(entryHeight+5); // increase the height of the content to fit the new entry (+5 for the padding)
         }
         else
         {
-            Debug.LogWarning("Le prefab n'a pas de RectTransform !");
+            Debug.LogWarning("RectTransform not found in the entry prefab!");
         }
 
-        // Ajouter à la liste
+        // Add to the list of entries
         entries.Add(new MenuEntry(newEntry, spawnedObject, dashedLineScript?.gameObject, entryHeight));
-        
-        EventTrigger eventTrigger = spawnedObject.GetComponent<EventTrigger>();
-        if (eventTrigger == null)
-        {
-            eventTrigger = spawnedObject.AddComponent<EventTrigger>();  // Ajouter un EventTrigger si pas déjà présent
-        }
 
-        // Créer un événement pour le clic sur l'objet 3D
-        EventTrigger.Entry entryClick = new EventTrigger.Entry();
-        entryClick.eventID = EventTriggerType.PointerClick;
-        entryClick.callback.AddListener((eventData) => RemoveEntry(newEntry));  // Appel de RemoveEntry pour supprimer l'entrée
-
-        eventTrigger.triggers.Add(entryClick);  // Ajouter l'événement au EventTrigger de spawnedObject
-
-        //retourne le bouton pour supprimer
+        //return the button to delete the entry, will be used in the SpawnPrefab script. 
+        //(If the spawned object will be clicked with the controller's trigger, the button will be clicked button.onClick.Invoke())
         return deleteButton;
     }
 
+    // Remove the entry from the list and destroy the GameObject, used with the delete button
     public void RemoveEntry(GameObject entryObject)
     {
+        // Search for the entry in the list
         MenuEntry toRemove = entries.Find(e => e.entryObject == entryObject);
         if (toRemove != null)
         {
@@ -156,25 +164,27 @@ public class DeleteMenu : MonoBehaviour
 
             Destroy(toRemove.entryObject);
 
-            // Réduire la taille du content
+            // Adjust the height of the content (-5 for the padding)
             AdjustContentHeight(-toRemove.entryHeight-5);
         }
     }
 
+    // Used to highlight the entry when the highlight button is clicked (+ the dashed line)
     private void ToggleSelected(GameObject entryObject)
     {
-        // Désélectionner toutes les autres entrées
+        // Unselect all other entries, only one can be selected at a time
         foreach (var entry in entries)
         {
             if (entry.entryObject != entryObject)
             {
-                // Chercher l'enfant "Selected"
+                // Search the child "Selected" in the entry prefab
                 Transform selectedChild = entry.entryObject.transform.Find("Selected");
                 if (selectedChild != null)
                 {
+                    // Deactivate the selected child (the outline)
                     selectedChild.gameObject.SetActive(false);
 
-                    // Mettre à jour aussi DashedLineMol
+                    // Deactivate the dashed line
                     if (entry.dashedLineObject != null)
                     {
                         entry.dashedLineObject.SetActive(false);
@@ -183,14 +193,15 @@ public class DeleteMenu : MonoBehaviour
             }
         }
 
-        // Sélectionner l'entrée cliquée
+        // Select the entry that was clicked
         Transform selected = entryObject.transform.Find("Selected");
         if (selected != null)
         {
             bool activeNow = !selected.gameObject.activeSelf;
+            // Activate the selected child (the outline)
             selected.gameObject.SetActive(activeNow);
 
-            // Mettre à jour aussi DashedLineMol
+            // Activate the dashed line
             MenuEntry entry = entries.Find(e => e.entryObject == entryObject);
             if (entry != null && entry.dashedLineObject != null)
             {
@@ -199,6 +210,7 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
+    // Adjust the height of the content in the scroll view, used when adding or removing an entry
     private void AdjustContentHeight(float deltaHeight)
     {
         if (content != null)
@@ -214,6 +226,7 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
+    // Used for the delete all button to set the height of the content to a default value (30)
     private void setContentHeight(float height)
     {
         if (content != null)
@@ -229,10 +242,9 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
-    // Méthode pour supprimer toutes les entrées
+    // Suppress all the entries in the list
     public void DeleteAllEntries()
     {
-        // Supprimer chaque entrée dans la liste
         foreach (var entry in entries)
         {
             if (entry.spawnedObject != null)
@@ -248,20 +260,9 @@ public class DeleteMenu : MonoBehaviour
             Destroy(entry.entryObject);
         }
 
-        // Réinitialiser la liste et ajuster la taille du contenu
+        // Reinitialize the list and set the height of the content to the default value
         entries.Clear();
         setContentHeight(30);
     }
 
-    public Button GetDeleteButtonForObject(GameObject spawnedObject)
-    {
-        foreach (var entry in entries)
-        {
-            if (entry.spawnedObject == spawnedObject)
-            {
-                return entry.entryObject.GetComponent<Button>();
-            }
-        }
-        return null;
-    }
 }

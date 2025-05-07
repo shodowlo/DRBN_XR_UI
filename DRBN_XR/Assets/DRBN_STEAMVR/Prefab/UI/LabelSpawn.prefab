@@ -496,6 +496,7 @@ MonoBehaviour:
   gapLength: 0.05
   dashMaterial: {fileID: 2100000, guid: e5c0ad9c999156f41817834a67980656, type: 2}
   lineWidth: 0.01
+  isInScrollEnvironment: 1
   targetObject: {fileID: 0}
   minY: -115
   maxY: 0

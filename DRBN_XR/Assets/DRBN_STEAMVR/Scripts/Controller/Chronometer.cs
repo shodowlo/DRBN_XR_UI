@@ -4,37 +4,49 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Chronometer class to manage a chronometer and a clock.
+/// The chronometer can be started, paused, and reset. It also displays the current time.
+/// </summary>
+
 public class Chronometer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // Chronometre
+    // Chronometer
     [Header("Chronometer")]
+    [Tooltip("Text to display the elapsed time")]
     public TextMeshProUGUI chronoTimeText;
+    [Tooltip("Button to start the chronometer")]
     public Button playButton;
+    [Tooltip("Button to pause the chronometer")]
     public Button pauseButton;
+    [Tooltip("Button to reset the chronometer")]
     public Button resetButton;
 
     private float elapsedTime = 0f;
     private bool isRunning = false;
 
-    // Pour le resize
+    // Resize on hover
     [Header("Resize on Hover (chronometer)")]
+    [Tooltip("Target to resize")]
     public RectTransform target;
-
+    [Tooltip("Size when not hovered")]
     public Vector2 normalSize = new Vector2(225f, 100f);
+    [Tooltip("Size when hovered")]
     public Vector2 hoverSize = new Vector2(270f, 100f);
+    [Tooltip("Speed of the resize in seconds")]
     public float resizeSpeed = 5f;
-
-    private RectTransform rectTransform;
     private Vector2 targetSize;
 
-    // Horloge
+    // Clock
     [Header("Clock")]
+    [Tooltip("Text to display the current time")]
+
     public TextMeshProUGUI clockTimeText;
     private string clockLastTime = "";
-
+    
     void Start()
     {
-        // Pour le chronometre
+        // For the chronometer
         UpdateTimeDisplay();
         UpdateButtons();
 
@@ -42,7 +54,7 @@ public class Chronometer : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         pauseButton.onClick.AddListener(PauseChrono);
         resetButton.onClick.AddListener(ResetChrono);
 
-        // pour le hover
+        // Hover
         if (target == null)
             target = GetComponent<RectTransform>();
 
@@ -52,17 +64,17 @@ public class Chronometer : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Update()
     {
-        // MAJ du chronometre
+        // Update the chronometer
         if (isRunning)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             UpdateTimeDisplay();
         }
     
-        // Maj hover
-        target.sizeDelta = Vector2.Lerp(target.sizeDelta, targetSize, Time.deltaTime * resizeSpeed);
+        // Update Hover effect
+        target.sizeDelta = Vector2.Lerp(target.sizeDelta, targetSize, Time.unscaledDeltaTime * resizeSpeed);
 
-        // MAJ de l'horloge
+        // Update the clock
         string currentTime = DateTime.Now.ToString("HH:mm");
 
         if (currentTime != clockLastTime)
@@ -107,12 +119,12 @@ public class Chronometer : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         pauseButton.gameObject.SetActive(isRunning);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData) // On Pointer Enter -> Hover animation
     {
         targetSize = hoverSize;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData) // On Pointer Exit -> Hover animation Exit
     {
         targetSize = normalSize;
     }

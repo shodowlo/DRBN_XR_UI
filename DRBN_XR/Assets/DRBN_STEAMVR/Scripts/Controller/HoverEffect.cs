@@ -4,19 +4,41 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+/// <summary>
+/// HoverEffects class to manage hover effects on UI elements.
+/// </summary>
+
 public class HoverEffects : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [Tooltip("Outline to enable on hover. Can be null.")]
     public Behaviour outlineToEnable;
+
+    [Tooltip("Shadow to enable on hover. Can be null.")]
     public Shadow shadowToEnable;
+
+    [Tooltip("Shadow to disable on hover. Can be null.")]
     public Shadow shadowToDisable;
+
+    [Tooltip("Toggle that will be toggled on click. Can be null. This can be used when to toggle a toggle that is a child of the object this script is attached to.")]
     public Toggle toggleToToggle;
+
+    [Tooltip("Dropdown that will be shown on click. Can be null. This can be used when to toggle a dropdown that is a child of the object this script is attached to.")]
     public TMP_Dropdown dropdownToShow;
+
+    [Tooltip("Button that will be pressed on click. Can be null. This can be used when to toggle a button that is a child of the object this script is attached to.")]
     public Button buttonToPress;
 
     [Header("Shadow Animation")]
+    [Tooltip("Enable shadow animation on hover.")]
     public bool enableShadowAnimation = true;
+
+    [Tooltip("Duration of the shadow animation in seconds.")]
     private float shadowAnimDuration = 0.05f;
+
+    [Tooltip("Start position of the shadow animation.")]
     public Vector2 shadowStart = Vector2.zero;
+
+    [Tooltip("End position of the shadow animation.")]
     public Vector2 shadowEnd = new Vector2(2f, -2f);
 
     private bool isHovered = false;

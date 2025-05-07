@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// DebugController class to manage the activation and positioning of game objects in the scene.
+/// This class is used for toggle on and placing the controller in front the the camera when not used in a VR environment.
+/// </summary>
 public class DebugController : MonoBehaviour
 {
     [System.Serializable]
