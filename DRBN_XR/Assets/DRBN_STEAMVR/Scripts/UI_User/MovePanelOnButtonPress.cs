@@ -2,11 +2,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class used to slide a panel like an animation
+/// </summary>
 public class MovePanelOnButtonPress : MonoBehaviour
 {
-    public List<RectTransform> panel; // Panel to move
-    public float moveDistance = -17.7f; // distance on axis X
-    public float moveSpeed = 10f; // speed movement
+    [Tooltip("Panel to move")]
+    public List<RectTransform> panel;
+
+    [Tooltip("Distance on axis X")]
+    public float moveDistance = -17.7f;
+
+    [Tooltip("Speed movement")]
+    public float moveSpeed = 10f;
 
     private Vector3 originalPosition;
     private Vector3 targetPosition;

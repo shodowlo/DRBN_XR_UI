@@ -4,9 +4,15 @@ using System.Xml;
 using System.IO;
 using UnityEditor;
 
+/// <summary>
+/// Class which take picture of the prefab if he doesn't have sprite and stock it in Asset/Resources/Images/Molecules
+/// </summary>
 public class PrefabImageLoaderAuto : MonoBehaviour
 {
+    [Tooltip("Place where the prefab sapwn to take a picture")]
     public Vector3 previewPosition = new Vector3(1000, 0, 1000);
+
+    [Tooltip("Size of the picture")]
     public int textureSize = 1024;
     public bool debugDontDestroy = false;
     private string xmlFilePath = "Resources/XML/PrefabList.xml"; // path from Assets repository
@@ -19,7 +25,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
 
         if (!File.Exists(fullXmlPath))
         {
-            Debug.LogError("Fichier XML non trouvé : " + fullXmlPath);
             return;
         }
 
@@ -34,7 +39,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
 
             if (string.IsNullOrEmpty(imageName) || string.IsNullOrEmpty(prefabPath))
             {
-                Debug.LogError("Attributs manquants dans le fichier XML pour l'image.");
                 continue;
             }
 
@@ -42,7 +46,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
 
             if (File.Exists(fullPath))
             {
-                Debug.Log("Image déjà existante : " + fullPath);
                 continue;
             }
 
@@ -50,7 +53,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
             GameObject moleculePrefab = Resources.Load<GameObject>(prefabPath);
             if (moleculePrefab == null)
             {
-                Debug.LogError("Préfabriqué non trouvé : " + prefabPath);
                 continue;
             }
 
@@ -113,9 +115,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
         ConfigureTextureImportSettings(fullPath);
 
         Sprite sprite = CreateSpriteFromTexture(snapshot, imageName);
-
-        Debug.Log("Snapshot sauvegardé : " + fullPath);
-        Debug.Log("Sprite créé : " + sprite.name);
     }
 
     void ConfigureTextureImportSettings(string fullPath)    // PNG to Sprite
@@ -136,10 +135,6 @@ public class PrefabImageLoaderAuto : MonoBehaviour
             textureImporter.SetTextureSettings(textureImporterSettings);
 
             AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
-        }
-        else
-        {
-            Debug.LogError("TextureImporter non trouvé pour : " + assetPath);
         }
     }
 

@@ -2,16 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Class to resize a canvas/panel and its value for the next simulation
+/// </summary>
 public class Interface_Size : MonoBehaviour
 {
+    [Tooltip("Object to resize")]
     public Transform targetObject;
+
+    [Tooltip("Slider to change the value")]
     public Slider slider;
 
     [Header("Scale minimal and maximal")]
     public float scaleMin = 0.003f;
     public float scaleMax = 0.009f;
 
-    public bool shouldUpdateScale = false; // Flag to control when to update the scale
+    [Tooltip("Flag to control when to update the scale")]
+    public bool shouldUpdateScale = false;
 
     void Awake()
     {

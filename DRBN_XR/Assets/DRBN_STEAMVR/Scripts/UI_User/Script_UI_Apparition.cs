@@ -2,10 +2,18 @@ using UnityEngine;
 using UnityEngine.XR;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class for spawning UI User whith the Y button of the controller
+/// </summary>
 public class Script_UI_Apparition : MonoBehaviour
 {
+    [Tooltip("Canvas containing all the panels")]
     public GameObject canvasToToggle;
+
+    [Tooltip("Every panels to hide")]
     public List<GameObject> gameObjectsToHide;
+
+    [Tooltip("Every panels to show")]
     public List<GameObject> gameObjectToShow;
 
     private InputDevice targetDevice;

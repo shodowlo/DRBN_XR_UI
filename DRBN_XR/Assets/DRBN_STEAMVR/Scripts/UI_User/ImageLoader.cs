@@ -5,13 +5,26 @@ using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Class used to add every Molecules in the XML file in the Molecules menu
+/// Order the molecules by name, add prefab in the dropdown if selected
+/// </summary>
 public class ImageLoader : MonoBehaviour
 {
-    public string xmlFilePath = "XML/PrefabList"; // path to XLM from Resources/
-    public GameObject imageContainer; // panel with the pictures
-    public GameObject imageTextPrefab; // Prefab image
-    public TMP_Dropdown dropdown; // DropdownTMP
-    public DropdownSelection dropdownSelection; // Script DropdownSelection
+    [Tooltip("Path to XLM from Resources/")]
+    public string xmlFilePath = "XML/PrefabList";
+
+    [Tooltip("Panel with the pictures")]
+    public GameObject imageContainer;
+
+    [Tooltip("Prefab image")]
+    public GameObject imageTextPrefab;
+
+    [Tooltip("DropdownTMP")]
+    public TMP_Dropdown dropdown;
+
+    [Tooltip("Script DropdownSelection")]
+    public DropdownSelection dropdownSelection;
 
     private Dictionary<string, GameObject> imageToggleObjects = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
@@ -28,31 +41,25 @@ public class ImageLoader : MonoBehaviour
         TextAsset xmlFile = Resources.Load<TextAsset>(xmlFilePath);
         if (xmlFile == null)
         {
-            Debug.LogError("ImageLoader: XML file not found at path: " + xmlFilePath);
             return;
         }
 
         XmlDocument xmlDoc = new XmlDocument();
         try
         {
-            Debug.Log("ImageLoader: Attempting to load XML file from path: " + xmlFilePath);
             xmlDoc.LoadXml(xmlFile.text);
-            Debug.Log("ImageLoader: XML file loaded successfully.");
         }
         catch (System.Exception e)
         {
-            Debug.LogError("ImageLoader: Error loading XML file: " + e.Message);
             return;
         }
 
         XmlNodeList imageNodes = xmlDoc.SelectNodes("Images/Image");
         if (imageNodes == null || imageNodes.Count == 0)
         {
-            Debug.LogWarning("ImageLoader: No image nodes found in XML file.");
             return;
         }
 
-        Debug.Log("ImageLoader: Found " + imageNodes.Count + " image nodes.");
 
         List<(Sprite image, string name, GameObject prefab)> loadedImages = new List<(Sprite, string, GameObject)>();
 
@@ -64,7 +71,6 @@ public class ImageLoader : MonoBehaviour
 
             if (string.IsNullOrEmpty(imageName) || string.IsNullOrEmpty(imagePath) || string.IsNullOrEmpty(prefabPath))
             {
-                Debug.LogWarning("ImageLoader: Invalid image node in XML file.");
                 continue;
             }
 
@@ -75,27 +81,19 @@ public class ImageLoader : MonoBehaviour
             {
                 loadedImages.Add((image, imageName, prefab));
                 prefabs[imageName] = prefab; // save prefab in dictionary
-                Debug.Log("ImageLoader: Loaded image: " + imageName + " from path: " + imagePath);
-            }
-            else
-            {
-                Debug.LogWarning("ImageLoader: Image or prefab not found at path: " + imagePath + " or " + prefabPath);
             }
         }
 
         // Image order by name
         loadedImages = loadedImages.OrderBy(image => image.name).ToList();
-        Debug.Log("ImageLoader: Images sorted.");
 
         DisplayImages(loadedImages);
     }
 
     void DisplayImages(List<(Sprite image, string name, GameObject prefab)> images)
     {
-        Debug.Log("ImageLoader: DisplayImages method called.");
         if (images.Count == 0)
         {
-            Debug.LogWarning("ImageLoader: No images loaded.");
             return;
         }
 
@@ -120,21 +118,11 @@ public class ImageLoader : MonoBehaviour
             {
                 imageComponent.sprite = image;
                 imageComponent.preserveAspect = true; // save the ratio of the picture
-                Debug.Log("ImageLoader: Set image sprite for: " + name);
-            }
-            else
-            {
-                Debug.LogWarning("ImageLoader: Image component not found in prefab instance.");
             }
 
             if (textComponent != null)
             {
                 textComponent.text = name;
-                Debug.Log("ImageLoader: Set text for: " + name);
-            }
-            else
-            {
-                Debug.LogWarning("ImageLoader: TextMeshProUGUI component not found in prefab instance.");
             }
 
             if (clickHandler != null)
@@ -143,17 +131,10 @@ public class ImageLoader : MonoBehaviour
                 clickHandler.dropdown = dropdown; // DropdownTMP
                 clickHandler.imageLoader = this; // imageLoader
                 clickHandler.image = image;
-                Debug.Log("ImageLoader: Set click handler for: " + name);
-            }
-            else
-            {
-                Debug.LogWarning("ImageLoader: ImageClickHandler component not found in prefab instance.");
             }
 
             // follow state
             imageToggleObjects[name] = instance;
-
-            Debug.Log("ImageLoader: Displayed image: " + name);
         }
 
         // Add scroll rect only if necessary
@@ -167,7 +148,6 @@ public class ImageLoader : MonoBehaviour
             scrollRect.vertical = true;
             scrollRect.movementType = ScrollRect.MovementType.Clamped;
             scrollRect.inertia = false;
-            Debug.Log("ImageLoader: ScrollRect added.");
         }
     }
 
@@ -187,17 +167,12 @@ public class ImageLoader : MonoBehaviour
         {
             dropdown.options.Remove(option);
             dropdown.RefreshShownValue();
-            Debug.Log("ImageLoader: Removed option from dropdown: " + optionText);
 
             // update prefab dropdown
             if (dropdownSelection != null)
             {
                 dropdownSelection.ForceUpdateSpawnPrefab();
             }
-        }
-        else
-        {
-            Debug.LogWarning("ImageLoader: Option not found in dropdown: " + optionText);
         }
     }
 }

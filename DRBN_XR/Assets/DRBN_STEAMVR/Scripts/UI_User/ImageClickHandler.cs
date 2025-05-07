@@ -4,13 +4,20 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// Class used to put an image in a dropdown, or remove it
+/// </summary>
 public class ImageClickHandler : MonoBehaviour
 {
-    public string imageName; // image's name
-    public TMP_Dropdown dropdown; // Dropdown for the selected prefab
-    public ImageLoader imageLoader; // Script ImageLoader
-    private Button button; // Composant Button pour gérer les clics
-
+    [Tooltip("Image's name")]
+    public string imageName;
+    [Tooltip("Dropdown for the selected prefab")]
+    public TMP_Dropdown dropdown;
+    [Tooltip("Script ImageLoader")]
+    public ImageLoader imageLoader;
+    [Tooltip("Button component for the click ")]
+    private Button button;
+    [Tooltip("To put a picture on an option")]
     public Sprite image;
 
 
@@ -20,10 +27,6 @@ public class ImageClickHandler : MonoBehaviour
         if (button != null)
         {
             button.onClick.AddListener(OnImageClick);
-        }
-        else
-        {
-            Debug.LogWarning("ImageClickHandler: Button component not found.");
         }
     }
 
@@ -35,24 +38,17 @@ public class ImageClickHandler : MonoBehaviour
             if (dropdown.options.Any(option => option.text == imageName))
             {
                 imageLoader.RemoveOptionFromDropdown(imageName);
-                Debug.Log("ImageClickHandler: Removed existing item from dropdown: " + imageName);
             }
             else
             {
                 // add the prefab
                 dropdown.AddOptions(new List<TMP_Dropdown.OptionData> { new TMP_Dropdown.OptionData(imageName,image,Color.white) });
-                Debug.Log("ImageClickHandler: Added item to dropdown: " + imageName);
             }
 
             DropdownSelection dropdownSelection = dropdown.GetComponent<DropdownSelection>();
             if (dropdownSelection != null)
             {
                 dropdownSelection.ForceUpdateSpawnPrefab();
-                Debug.Log("ImageClickHandler: ForceUpdateSpawnPrefab called.");
-            }
-            else
-            {
-                Debug.LogWarning("ImageClickHandler: DropdownSelection component not found on TMP_Dropdown.");
             }
         }
     }
