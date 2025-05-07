@@ -1,60 +1,18 @@
-// using UnityEngine;
-// using UnityEngine.SceneManagement;
-// using UnityEngine.UI;
-
-// public class SimulationReset : MonoBehaviour
-// {
-//     public Slider slider;
-
-//     public GameObject settings;
-//     private Interface_Size interfaceSize;
-
-//     void Start()
-//     {
-//         interfaceSize = slider.GetComponent<Interface_Size>();
-
-//         // if save state present, reload it
-//         if (PlayerPrefs.HasKey("SliderValue"))
-//         {
-//             float sliderValue = PlayerPrefs.GetFloat("SliderValue");
-//             interfaceSize.OnSliderReleased(sliderValue) ;
-//         }
-//         else
-//         {
-//             float sliderValue = 0.5f;
-//             interfaceSize.OnSliderReleased(sliderValue);
-//         }
-
-//         if (settings != null)
-//         {
-//             settings.SetActive(false);
-//         }
-//     }
-
-//     public void ResetSimulation()
-//     {
-//         // Save actual value
-//         float currentSliderValue = slider.value;
-//         PlayerPrefs.SetFloat("SliderValue", currentSliderValue);
-
-//         // Prevent scale update
-//         interfaceSize.shouldUpdateScale = false;
-
-//         // Reload the scene
-//         Scene currentScene = SceneManager.GetActiveScene();
-//         SceneManager.LoadScene(currentScene.name);
-//     }
-// }
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class to reset everything in the simulation exept the options
+/// </summary>
 public class SimulationReset : MonoBehaviour
 {
+    [Tooltip("Slider that needs to conserve its value")]
     public Slider slider;
+    
+    [Tooltip("Used for closing a panel if reset to executed its start methode")]
     public GameObject settings;
-    private Interface_Size interfaceSize;
-    public RectTransform content; // Référence au Content du GridLayoutGroup
+    private Interface_Size interfaceSize;   //conserved his value even if reset executed
 
     void Awake()
     {

@@ -1,8 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class used to navigate between the panels. 
+/// </summary>
 public class NavigationMenu : MonoBehaviour
 {
+    [Header("Panels to switch")]
     public GameObject firstPanel;
     public GameObject secondPanel;
 
@@ -46,10 +50,6 @@ public class NavigationMenu : MonoBehaviour
                 firstPanel.SetActive(true);
                 secondPanel.SetActive(false);
             }
-        }
-        else
-        {
-            Debug.LogWarning("NavigationMenu: firstPanel or secondPanel is not assigned.");
         }
     }
 }

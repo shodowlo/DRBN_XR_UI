@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class used to switch the speed of the simulation or pause it
+/// </summary>
 public class TimeControl : MonoBehaviour
 {
     public Button pauseButton;

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class used to exit the simulation from the simulation
+/// </summary>
 public class QuitApp : MonoBehaviour
 {
     public void QuitGame()

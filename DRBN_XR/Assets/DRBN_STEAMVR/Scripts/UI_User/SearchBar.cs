@@ -3,9 +3,15 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// Class who change the inputField for a search bar
+/// </summary>
 public class SearchBar : MonoBehaviour
 {
+    [Tooltip("Input field used as a search bar")]
     public TMP_InputField searchInputField;
+
+    [Tooltip("GridLayout which contains every options")]
     public GridLayoutGroup gridLayoutGroup;
 
     void Start()
