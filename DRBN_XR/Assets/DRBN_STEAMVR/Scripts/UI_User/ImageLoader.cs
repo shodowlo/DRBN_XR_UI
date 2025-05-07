@@ -31,13 +31,11 @@ public class ImageLoader : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("ImageLoader: Start method called.");
         LoadImagesFromXML();
     }
 
     void LoadImagesFromXML()
     {
-        Debug.Log("ImageLoader: LoadImagesFromXML method called.");
         TextAsset xmlFile = Resources.Load<TextAsset>(xmlFilePath);
         if (xmlFile == null)
         {

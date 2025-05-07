@@ -62,7 +62,8 @@ public class PrefabImageLoaderAuto : MonoBehaviour
         AssetDatabase.Refresh();
     }
 
-    void CaptureAndSaveImage(GameObject moleculePrefab, string imageName, string fullPath)  //take the picture and stock it
+    // Take the picture and stock it
+    void CaptureAndSaveImage(GameObject moleculePrefab, string imageName, string fullPath)  
     {
         RenderTexture renderTexture = new RenderTexture(textureSize, textureSize, 16);
         renderTexture.Create();
@@ -117,7 +118,8 @@ public class PrefabImageLoaderAuto : MonoBehaviour
         Sprite sprite = CreateSpriteFromTexture(snapshot, imageName);
     }
 
-    void ConfigureTextureImportSettings(string fullPath)    // PNG to Sprite
+    // PNG to Sprite
+    void ConfigureTextureImportSettings(string fullPath)    
     {
         string assetPath = Path.GetRelativePath(Application.dataPath, fullPath).Replace("\\", "/");
         assetPath = "Assets/" + assetPath;

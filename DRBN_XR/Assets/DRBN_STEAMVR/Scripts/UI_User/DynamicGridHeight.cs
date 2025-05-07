@@ -16,7 +16,7 @@ public class DynamicGridHeight : MonoBehaviour
     
     void Start()
     {
-        // Assurez-vous que le content et le gridLayoutGroup sont assignés
+        // Content and gridLayout must be assigned
         if (content == null)
         {
             content = GetComponent<RectTransform>();
@@ -45,7 +45,7 @@ public class DynamicGridHeight : MonoBehaviour
         content.sizeDelta = new Vector2(content.sizeDelta.x, newHeight + 10);
     }
 
-    // Appeler cette méthode chaque fois que vous ajoutez un nouvel élément
+    // this method must be call at each new element
     public void OnElementAdded()
     {
         AdjustContentHeight();
