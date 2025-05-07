@@ -3,25 +3,44 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+/// <summary>
+/// SliderLogger class to manage sliders and their values.
+/// </summary>
+
 public class SliderLogger : MonoBehaviour
 {
     [System.Serializable]
     public class SliderInfo
     {
+        [Tooltip("Slider to manage.")]
         public Slider slider;
+
+        [Tooltip("Text to display the value of the slider (on the slider itself).")]
         public TextMeshProUGUI valueText;
+
+        [Tooltip("Text to display the value of the slider (on the panel).")]
         public TextMeshProUGUI valueTextPanel;
+
+        [Tooltip("Minimum value for the slider.")]
         public float minCustomValue = 1f;
+
+        [Tooltip("Maximum value for the slider.")]
         public float maxCustomValue = 100f;
+
+        [Tooltip("Default value for the slider.")]
         public float defaultValue = 0.5f;
+
+        [Tooltip("Button to show the slider.")]
         public Button showButton;
+
+        [Tooltip("Line object to show when the slider is active.")]
         public GameObject lineObject;
     }
 
-    [Header("Sliders à gérer")]
+    [Header("Sliders to manage")]
     public List<SliderInfo> sliders = new List<SliderInfo>();
 
-    [Header("Bouton de reset")]
+    [Header("Reset button")]
     public Button resetButton;
 
     void Start()
@@ -32,23 +51,23 @@ public class SliderLogger : MonoBehaviour
             {
                 SliderInfo capturedInfo = sliderInfo;
 
-                // Listener pour la valeur du slider
+                // Listener for the slider value change
                 capturedInfo.slider.onValueChanged.AddListener((value) => OnSliderValueChanged(capturedInfo, value));
                 OnSliderValueChanged(capturedInfo, capturedInfo.slider.value);
 
-                // Listener pour le bouton d'affichage
+                // Listener for the show button
                 if (capturedInfo.showButton != null)
                 {
                     capturedInfo.showButton.onClick.AddListener(() => ShowOnlySlider(capturedInfo));
                 }
                 else
                 {
-                    Debug.LogWarning($"Pas de bouton assigné pour {capturedInfo.slider.gameObject.name}");
+                    Debug.LogWarning("No show button assigned for the slider: " + capturedInfo.slider.gameObject.name);
                 }
             }
             else
             {
-                Debug.LogError("Slider non assigné dans la liste !");
+                Debug.LogError("Slider is not assigned in the inspector for: " + sliderInfo.slider.gameObject.name);
             }
         }
 
@@ -58,12 +77,14 @@ public class SliderLogger : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Aucun bouton de reset assigné !");
+            Debug.LogWarning("No reset button assigned in the inspector.");
         }
     }
 
     void OnSliderValueChanged(SliderInfo sliderInfo, float value)
     {
+        // Map the slider value to the custom range
+
         float mapped = Mathf.Lerp(
             sliderInfo.minCustomValue,
             sliderInfo.maxCustomValue,
@@ -71,8 +92,6 @@ public class SliderLogger : MonoBehaviour
         );
 
         int intValue = Mathf.RoundToInt(mapped);
-
-        Debug.Log($"[{sliderInfo.slider.gameObject.name}] Valeur mappée : {intValue}");
 
         if (sliderInfo.valueText != null)
             sliderInfo.valueText.text = intValue.ToString();
@@ -94,6 +113,7 @@ public class SliderLogger : MonoBehaviour
 
     public void ShowOnlySlider(SliderInfo sliderToShow)
     {
+        // Hide all sliders and their text except the one we want to show
         foreach (var sliderInfo in sliders)
         {
             bool isTarget = sliderInfo == sliderToShow;

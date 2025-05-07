@@ -27,7 +27,7 @@ public class LoadControllerPreferences : MonoBehaviour
     private int isFlyEnabled;
     private int isLeftEnabled;
 
-    [Header("Pour le mode gaucher")]
+    [Header("For the left handed mode")]
     public GameObject LeftControllerVisual;
     public GameObject RightControllerVisual;
     public GameObject LeftControllerVisualUniversalController;
@@ -70,7 +70,6 @@ public class LoadControllerPreferences : MonoBehaviour
     private void LoadTeleportPreference()
     {
         isTeleportEnabled = PlayerPrefs.GetInt(preferenceKeyTeleport, 1);
-        Debug.Log("Loading teleport preference");
         if (isTeleportEnabled == 0)
         {
             teleportationProvider.enabled = false;
@@ -86,7 +85,6 @@ public class LoadControllerPreferences : MonoBehaviour
     private void LoadJoystickPreference()
     {
         isJoystickEnabled = PlayerPrefs.GetInt(preferenceKeyJoystick, 1);
-        Debug.Log("Loading joystick preference : " + isJoystickEnabled);
         if (isJoystickEnabled == 0)
         {
             moveProvider.enabled = false;
@@ -101,7 +99,6 @@ public class LoadControllerPreferences : MonoBehaviour
     private void LoadFlyPreference()
     {
         isFlyEnabled = PlayerPrefs.GetInt(preferenceKeyFly, 0);
-        Debug.Log("Loading fly preference: " + isFlyEnabled);
         if (isFlyEnabled == 1)
         {
             moveProvider.enableFly = true;
@@ -115,7 +112,6 @@ public class LoadControllerPreferences : MonoBehaviour
     private void LoadTurnPreference()
     {
         turnValue = PlayerPrefs.GetInt(preferenceKeyTurn, 0);
-        Debug.Log("Loading turn preference: " + turnValue);
         switch (turnValue)
         {
             case 0: // cas continuous
@@ -137,7 +133,6 @@ public class LoadControllerPreferences : MonoBehaviour
     private void LoadLeftPreference()
     {
         isLeftEnabled = PlayerPrefs.GetInt(preferenceKeyLeft, 0);
-        Debug.Log("Loading left preference: " + isLeftEnabled);
 
         bool isRight = isLeftEnabled == 1;
 

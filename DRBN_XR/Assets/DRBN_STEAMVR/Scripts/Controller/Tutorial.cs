@@ -1,28 +1,36 @@
 using UnityEngine;
 
+/// <summary>
+/// Tutorial class to manage the tutorial steps in the game.
+/// </summary>
+
 public class Tutorial : MonoBehaviour
 {
-    // Class contenant les liste de gameobjects à toggle à chaque step
     [System.Serializable]
     public class Step
     {
+        [Tooltip("Objects to toggle on this step.")]
         public GameObject[] objectsToToggle;
     }
 
+    [Tooltip("Preference key to check if the tutorial should be shown at Start.")]
     public string preferenceKey = "startTutorial";
+
+    [Tooltip("Tutorial GameObject")]
     public GameObject tutorialUI;
 
-    public Step[] steps; // Array of steps
-
-    private int step = 0; // Step counter
-
-    //Previous step button
+    [Tooltip("Button to go to the previous step.")]
     public GameObject previousStepButton;
 
+
+    public Step[] steps;
+
+    private int step = 0; // current step index
 
     void Start()
     {
         bool shouldInit = PlayerPrefs.GetInt(preferenceKey, 1) == 1;
+        // By default, the tutorial is show at the start
 
         if (shouldInit)
         {
@@ -33,27 +41,28 @@ public class Tutorial : MonoBehaviour
 
     public void Init()
     {
-        // Prendre le premier step l'afficher et cacher les autres
+        // Take the first step and desactive all the other steps 
         step = 0;
         deactiveAndActiveCurrentGameObjects(step);
         tutorialUI.SetActive(true);
 
-        //desactiver le bouton previous step
+        //Deactivate the previous step button, since we are at the first step
         previousStepButton.SetActive(false);
     }
 
     public void NextStep()
     {
         step++;
-        // si on est a la fin des steps, on desactive le tuto
+        // End of the tutorial, we desactive the tutorial UI
         if (step >= steps.Length)
         {
             tutorialUI.SetActive(false);
             return;
         }
-        //on desactive le step precedent et on active le step suivant
+
         deactiveAndActiveCurrentGameObjects(step);
-        // Si on est pas au premier step, on active le bouton previous step
+
+        //if we are not at the first step,w e activate the previous step button
         if (step > 0)
         {
             previousStepButton.SetActive(true);
@@ -63,12 +72,10 @@ public class Tutorial : MonoBehaviour
     public void PreviousStep()
     {
         step--;
-        // si on est a la fin des steps, on desactive le bouton previous step
         if (step == 0)
         {
             previousStepButton.SetActive(false);
         }
-        //on desactive le step precedent et on active le step suivant
         deactiveAndActiveCurrentGameObjects(step);
     }
     private void setActiveGameObjects(bool active, GameObject[] gameObjects)

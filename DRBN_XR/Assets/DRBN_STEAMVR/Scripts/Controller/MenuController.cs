@@ -1,36 +1,50 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    //Le transform du point de départ de l'ouverture du menu
+    [Tooltip("Transform of the start position of the menu")]
     public Transform startTransform;
-    //Le transform de la position finale du menu
+
+    [Tooltip("Transform of the end position of the menu")]
     public Transform endTransform;
-    //La durée de l'animation d'ouverture/fermeture du menu
+
+    [Tooltip("Duration of the animation in seconds")]
     public float animationDuration = 0.2f;
 
     [System.Serializable]
     public class Tabs
     {
-        // Le panneau de l'onglet
+        [Tooltip("Panel of the tab")]
         public GameObject tabPanel;
-        // Bouton de l'onglet
+        
+        [Tooltip("Button to open the tab")]
         public GameObject tabButton;
+
+        [Tooltip("Image of the tab")]
         public Image tabImage;
-        // L'image qui indique visuellement si l'onglet est actif ou non
+
+        [Tooltip("Selector of the tab (visual image that shows the tab is selected)")]
         public GameObject tabSelector;
-        // Title de l'onglet
+        
+        [Tooltip("Title of the tab")]
         public GameObject tabTitle;
-        //Optionnel : les gameobject à désactiver quand on change d'onglet/quitter le menu
+
+        [Tooltip("Objects to hide when the tab when closing the tab")]
         public GameObject[] objectsToHide;
-        //Optionnel : les scripts à désactiver quand on change d'onglet/quitter le menu
+        
+        [Tooltip("Objects to show when the tab is opened")]
         public GameObject[] objectsToShow;
+
+        [Tooltip("Scripts to deactivate when the tab is closed")]
         public MonoBehaviour[] scriptsToDeactivate;
-        //Optionnel : les scripts à activer quand on ouvre l'onglet
+        
+        [Tooltip("Scripts to activate when the tab is opened")]
         public MonoBehaviour[] scriptsToActivate;
     }
-    public Tabs[] tabs; // Array of tabs
+    [Tooltip("Tabs to manage")]
+    public Tabs[] tabs;
 
     private bool isAnimating = false;
     private bool isMenuOpen = false;
@@ -44,23 +58,22 @@ public class MenuController : MonoBehaviour
 
     public void Init()
     {
-        // Prendre le premier tab l'afficher et cacher les autres
         for (int i = 0; i < tabs.Length; i++)
         {
+            int index = i;
 
-            int index = i; // Nécessaire pour la fermeture de la boucle
+            // Add listener to the button to change the tab to the one we clicked on
             var button = tabs[i].tabButton.GetComponent<UnityEngine.UI.Button>();
             button.onClick.AddListener(() => ChangeTab(index));
 
-            // Initialiser l'alpha des images à 60
+            // Initialize the tab image alpha to 60f (not selected)
             SetImageAlpha(tabs[i].tabImage, 60f);
 
-            // Ajouter events pour hover
+            // Event for hovering over the tab button
             UnityEngine.EventSystems.EventTrigger trigger = tabs[i].tabButton.GetComponent<UnityEngine.EventSystems.EventTrigger>();
             if (trigger == null)
                 trigger = tabs[i].tabButton.AddComponent<UnityEngine.EventSystems.EventTrigger>();
 
-            // Entrée souris
             var entryEnter = new UnityEngine.EventSystems.EventTrigger.Entry
             {
                 eventID = UnityEngine.EventSystems.EventTriggerType.PointerEnter
@@ -72,7 +85,6 @@ public class MenuController : MonoBehaviour
             });
             trigger.triggers.Add(entryEnter);
 
-            // Sortie souris
             var entryExit = new UnityEngine.EventSystems.EventTrigger.Entry
             {
                 eventID = UnityEngine.EventSystems.EventTriggerType.PointerExit
@@ -84,6 +96,8 @@ public class MenuController : MonoBehaviour
             });
             trigger.triggers.Add(entryExit);
         }
+
+        // Set the first tab as active at the start
         ChangeTab(0);
     }
 
@@ -91,7 +105,7 @@ public class MenuController : MonoBehaviour
     {
         if (index < 0 || index >= tabs.Length) return;
 
-        // Désactiver tous les onglets, sélecteurs, titres, objets à afficher, objets à cacher, et scripts
+        // Deactivate all tabs, selectors, titles, objects to show, objects to hide, and scripts
         for (int i = 0; i < tabs.Length; i++)
         {
             tabs[i].tabPanel.SetActive(false);
@@ -128,7 +142,7 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        // Activer le nouvel onglet, ses éléments associés et ses scripts
+        //Activate the new tab, its associated elements and its scripts
         tabs[index].tabPanel.SetActive(true);
         tabs[index].tabSelector.SetActive(true);
         tabs[index].tabTitle.SetActive(true);
@@ -156,6 +170,7 @@ public class MenuController : MonoBehaviour
     }
 
 
+    //Open the menu (not the tab but the menu itself)
     public void ShowMenu()
     {
         if (isAnimating || isMenuOpen || startTransform == null || endTransform == null || gameObject == null)
@@ -166,7 +181,7 @@ public class MenuController : MonoBehaviour
         gameObject.transform.rotation = startTransform.rotation;
         gameObject.transform.localScale = Vector3.one * 0.1f;
 
-        // Activer les scripts du premier onglet si il y a un premier onglet
+        // Activate the first tab and its associated elements
         if (tabs.Length > 0 && tabs[0].scriptsToActivate != null)
         {
             foreach (var script in tabs[0].scriptsToActivate)
@@ -178,7 +193,6 @@ public class MenuController : MonoBehaviour
             }
         }
 
-        //show les objects a show
         if (tabs.Length > 0 && tabs[0].objectsToShow != null)
         {
             foreach (GameObject obj in tabs[0].objectsToShow)
@@ -187,6 +201,7 @@ public class MenuController : MonoBehaviour
                     obj.SetActive(true);
             }
         }
+        // Start la coroutine (animation) pour ouvrir le menu
         StartCoroutine(AnimateMenu(endTransform, true));
     }
 
@@ -194,7 +209,7 @@ public class MenuController : MonoBehaviour
     {
         if (isAnimating || !isMenuOpen || startTransform == null || gameObject == null)
             return;
-
+        // Start la coroutine (animation) pour fermer le menu
         StartCoroutine(AnimateMenu(startTransform, false));
     }
 
@@ -215,6 +230,8 @@ public class MenuController : MonoBehaviour
 
     private System.Collections.IEnumerator AnimateMenu(Transform target, bool opening)
     {
+        //animation logic
+        
         isAnimating = true;
         float elapsed = 0f;
 
