@@ -22,15 +22,19 @@ public class MenuEntry
     public GameObject dashedLineObject;
     //The line that will be drawn between the entry and the spawned prefab
 
+    public ModifiedOutline outline;
+    // The outline of the entry prefab (to highlight it)
+
     public float entryHeight;
     // Will be calculated automatically. The height of the entry prefab (to adjust de the height og the "content" GameObject in the scroll view)
 
-    public MenuEntry(GameObject entryObject, GameObject spawnedObject, GameObject dashedLineObject, float entryHeight)
+    public MenuEntry(GameObject entryObject, GameObject spawnedObject, GameObject dashedLineObject, float entryHeight, ModifiedOutline outline)
     {
         this.entryObject = entryObject;
         this.spawnedObject = spawnedObject;
         this.dashedLineObject = dashedLineObject;
         this.entryHeight = entryHeight;
+        this.outline = outline;
     }
 }
 
@@ -61,7 +65,7 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
-    public Button AddEntry(string labelText, GameObject spawnedObject)
+    public Button AddEntry(string labelText, GameObject spawnedObject, ModifiedOutline outline)
     {
         if (entryPrefab == null || content == null)
         {
@@ -136,7 +140,7 @@ public class DeleteMenu : MonoBehaviour
         }
 
         // Add to the list of entries
-        entries.Add(new MenuEntry(newEntry, spawnedObject, dashedLineScript?.gameObject, entryHeight));
+        entries.Add(new MenuEntry(newEntry, spawnedObject, dashedLineScript?.gameObject, entryHeight, outline));
 
         //return the button to delete the entry, will be used in the SpawnPrefab script. 
         //(If the spawned object will be clicked with the controller's trigger, the button will be clicked button.onClick.Invoke())
@@ -190,6 +194,10 @@ public class DeleteMenu : MonoBehaviour
                         entry.dashedLineObject.SetActive(false);
                     }
                 }
+                if(entry.outline != null)
+                {
+                    entry.outline.enabled = false;
+                }
             }
         }
 
@@ -206,6 +214,7 @@ public class DeleteMenu : MonoBehaviour
             if (entry != null && entry.dashedLineObject != null)
             {
                 entry.dashedLineObject.SetActive(activeNow);
+                entry.outline.enabled = activeNow;
             }
         }
     }

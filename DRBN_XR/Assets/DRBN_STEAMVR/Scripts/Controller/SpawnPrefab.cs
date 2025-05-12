@@ -70,9 +70,11 @@ public class SpawnPrefab : MonoBehaviour
         {
             // Spawn the prefab at the spawn point position (and rotation)
             GameObject spawnedObject = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
+
+            ModifiedOutline outline = spawnedObject.GetComponent<ModifiedOutline>();
             // Add an entry in the delete menu
             // deleteButton will be invoked when we click the prefab spawn in the scene
-            Button deleteButton = deleteMenu.AddEntry(prefabName, spawnedObject);
+            Button deleteButton = deleteMenu.AddEntry(prefabName, spawnedObject, outline);
 
             // We need to find the XRGrabInteractable component in the prefab and add a listener to it (to delete it)
             XRGrabInteractable[] interactables = spawnedObject.GetComponentsInChildren<XRGrabInteractable>(true);

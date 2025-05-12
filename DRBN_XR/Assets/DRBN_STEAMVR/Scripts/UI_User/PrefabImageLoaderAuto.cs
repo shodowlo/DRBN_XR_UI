@@ -69,8 +69,8 @@ public class PrefabImageLoaderAuto : MonoBehaviour
         renderTexture.Create();
 
         GameObject molecule = Instantiate(moleculePrefab);
-        molecule.transform.position = previewPosition;
 
+        molecule.transform.position = previewPosition;
         Bounds bounds = CalculateBounds(molecule);
         Vector3 center = bounds.center;
         float maxSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
