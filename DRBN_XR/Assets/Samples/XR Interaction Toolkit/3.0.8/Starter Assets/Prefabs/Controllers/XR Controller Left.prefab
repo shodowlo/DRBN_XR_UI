@@ -205,6 +205,7 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 212edfdffa502d642a835d6f1ada0a9c, type: 2}
   lineWidth: 0.005
+  isInScrollEnvironment: 1
   targetObject: {fileID: 1262074482392263069}
   minY: -115
   maxY: 0
@@ -943,6 +944,7 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 23b4b5f7ff1066545b9b587d434e5ab5, type: 2}
   lineWidth: 0.005
+  isInScrollEnvironment: 1
   targetObject: {fileID: 1262074482392263069}
   minY: -115
   maxY: 0
@@ -1746,6 +1748,7 @@ MonoBehaviour:
   gapLength: 0.002
   dashMaterial: {fileID: 2100000, guid: daca96c7b42694f40bb47478460a8bdf, type: 2}
   lineWidth: 0.002
+  isInScrollEnvironment: 0
   targetObject: {fileID: 1262074482392263069}
   minY: -80
   maxY: 10
@@ -2303,6 +2306,7 @@ MonoBehaviour:
   gapLength: 0.002
   dashMaterial: {fileID: 2100000, guid: daca96c7b42694f40bb47478460a8bdf, type: 2}
   lineWidth: 0.002
+  isInScrollEnvironment: 0
   targetObject: {fileID: 1262074482392263069}
   minY: -800000
   maxY: 1000000
@@ -4794,6 +4798,7 @@ MonoBehaviour:
   gapLength: 0.002
   dashMaterial: {fileID: 2100000, guid: daca96c7b42694f40bb47478460a8bdf, type: 2}
   lineWidth: 0.002
+  isInScrollEnvironment: 0
   targetObject: {fileID: 1262074482392263069}
   minY: -80
   maxY: 10
@@ -5456,6 +5461,7 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: 2c1570aedc86a53449850c56510f68f5, type: 2}
   lineWidth: 0.005
+  isInScrollEnvironment: 1
   targetObject: {fileID: 1262074482392263069}
   minY: -115
   maxY: 0
@@ -6052,9 +6058,11 @@ MonoBehaviour:
     menuController: {fileID: 718659717521642326}
     objectsToHide: []
     objectsToShow: []
-    isPressed: 0
     normalColor: {r: 0.20392157, g: 0.59607846, b: 0.85882354, a: 1}
     pressedColor: {r: 0.16078432, g: 0.5019608, b: 0.7254902, a: 1}
+    hoverObjectsToToggle:
+    - {fileID: 5175128652526448901}
+    isPressed: 0
     targetColor: {r: 0, g: 0, b: 0, a: 0}
     originalLocalPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -6064,8 +6072,6 @@ MonoBehaviour:
     isAnimating: 0
     isHovering: 0
     hoverTimer: 0
-    hoverObjectsToToggle:
-    - {fileID: 5175128652526448901}
     hoverObjectsEnabled: 0
     isHoverForcedEnabled: 0
     isHelpButton: 0
@@ -6074,9 +6080,11 @@ MonoBehaviour:
     menuController: {fileID: 4745686691603775819}
     objectsToHide: []
     objectsToShow: []
-    isPressed: 0
     normalColor: {r: 0.90588236, g: 0.29803923, b: 0.23529412, a: 1}
     pressedColor: {r: 0.7529412, g: 0.22352941, b: 0.16862746, a: 1}
+    hoverObjectsToToggle:
+    - {fileID: 334565115773251275}
+    isPressed: 0
     targetColor: {r: 0, g: 0, b: 0, a: 0}
     originalLocalPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -6086,8 +6094,6 @@ MonoBehaviour:
     isAnimating: 0
     isHovering: 0
     hoverTimer: 0
-    hoverObjectsToToggle:
-    - {fileID: 334565115773251275}
     hoverObjectsEnabled: 0
     isHoverForcedEnabled: 0
     isHelpButton: 0
@@ -6096,9 +6102,11 @@ MonoBehaviour:
     menuController: {fileID: 4249941634638813838}
     objectsToHide: []
     objectsToShow: []
-    isPressed: 0
     normalColor: {r: 0.94509804, g: 0.76862746, b: 0.05882353, a: 1}
     pressedColor: {r: 0.9529412, g: 0.6117647, b: 0.07058824, a: 1}
+    hoverObjectsToToggle:
+    - {fileID: 5279647084051446}
+    isPressed: 0
     targetColor: {r: 0, g: 0, b: 0, a: 0}
     originalLocalPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -6108,8 +6116,6 @@ MonoBehaviour:
     isAnimating: 0
     isHovering: 0
     hoverTimer: 0
-    hoverObjectsToToggle:
-    - {fileID: 5279647084051446}
     hoverObjectsEnabled: 0
     isHoverForcedEnabled: 0
     isHelpButton: 1
@@ -6128,9 +6134,11 @@ MonoBehaviour:
     - {fileID: 6005935315073880682}
     - {fileID: 5727137339427161984}
     - {fileID: 1341202817043812593}
-    isPressed: 0
     normalColor: {r: 0.18039216, g: 0.8, b: 0.44313726, a: 1}
     pressedColor: {r: 0.15294118, g: 0.68235296, b: 0.3764706, a: 1}
+    hoverObjectsToToggle:
+    - {fileID: 9175083650277842851}
+    isPressed: 0
     targetColor: {r: 0, g: 0, b: 0, a: 0}
     originalLocalPosition: {x: 0, y: 0, z: 0}
     targetPosition: {x: 0, y: 0, z: 0}
@@ -6140,8 +6148,6 @@ MonoBehaviour:
     isAnimating: 0
     isHovering: 0
     hoverTimer: 0
-    hoverObjectsToToggle:
-    - {fileID: 9175083650277842851}
     hoverObjectsEnabled: 0
     isHoverForcedEnabled: 0
     isHelpButton: 0
@@ -7001,6 +7007,7 @@ MonoBehaviour:
   gapLength: 0.002
   dashMaterial: {fileID: 2100000, guid: daca96c7b42694f40bb47478460a8bdf, type: 2}
   lineWidth: 0.002
+  isInScrollEnvironment: 0
   targetObject: {fileID: 1262074482392263069}
   minY: -800000
   maxY: 1000000
@@ -7265,6 +7272,7 @@ MonoBehaviour:
   gapLength: 0.005
   dashMaterial: {fileID: 2100000, guid: f669bf54e4d86634bb81f300dd7de103, type: 2}
   lineWidth: 0.005
+  isInScrollEnvironment: 1
   targetObject: {fileID: 1262074482392263069}
   minY: -115
   maxY: 0

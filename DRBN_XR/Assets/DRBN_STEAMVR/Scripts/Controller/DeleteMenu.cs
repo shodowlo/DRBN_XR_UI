@@ -25,15 +25,11 @@ public class MenuEntry
     public ModifiedOutline outline;
     // The outline of the entry prefab (to highlight it)
 
-    public float entryHeight;
-    // Will be calculated automatically. The height of the entry prefab (to adjust de the height og the "content" GameObject in the scroll view)
-
-    public MenuEntry(GameObject entryObject, GameObject spawnedObject, GameObject dashedLineObject, float entryHeight, ModifiedOutline outline)
+    public MenuEntry(GameObject entryObject, GameObject spawnedObject, GameObject dashedLineObject, ModifiedOutline outline)
     {
         this.entryObject = entryObject;
         this.spawnedObject = spawnedObject;
         this.dashedLineObject = dashedLineObject;
-        this.entryHeight = entryHeight;
         this.outline = outline;
     }
 }
@@ -126,21 +122,8 @@ public class DeleteMenu : MonoBehaviour
             Debug.LogWarning("DashedLine script not found in the prefab!");
         }
 
-        // Obtaint the height of the entry prefab
-        float entryHeight = 0f;
-        RectTransform entryRect = newEntry.GetComponent<RectTransform>();
-        if (entryRect != null)
-        {
-            entryHeight = entryRect.rect.height;
-            AdjustContentHeight(entryHeight+5); // increase the height of the content to fit the new entry (+5 for the padding)
-        }
-        else
-        {
-            Debug.LogWarning("RectTransform not found in the entry prefab!");
-        }
-
         // Add to the list of entries
-        entries.Add(new MenuEntry(newEntry, spawnedObject, dashedLineScript?.gameObject, entryHeight, outline));
+        entries.Add(new MenuEntry(newEntry, spawnedObject, dashedLineScript?.gameObject, outline));
 
         //return the button to delete the entry, will be used in the SpawnPrefab script. 
         //(If the spawned object will be clicked with the controller's trigger, the button will be clicked button.onClick.Invoke())
@@ -167,9 +150,6 @@ public class DeleteMenu : MonoBehaviour
             }
 
             Destroy(toRemove.entryObject);
-
-            // Adjust the height of the content (-5 for the padding)
-            AdjustContentHeight(-toRemove.entryHeight-5);
         }
     }
 
@@ -219,38 +199,6 @@ public class DeleteMenu : MonoBehaviour
         }
     }
 
-    // Adjust the height of the content in the scroll view, used when adding or removing an entry
-    private void AdjustContentHeight(float deltaHeight)
-    {
-        if (content != null)
-        {
-            RectTransform contentRect = content.GetComponent<RectTransform>();
-            if (contentRect != null)
-            {
-                Vector2 size = contentRect.sizeDelta;
-                size.y += deltaHeight;
-
-                contentRect.sizeDelta = size;
-            }
-        }
-    }
-
-    // Used for the delete all button to set the height of the content to a default value (30)
-    private void setContentHeight(float height)
-    {
-        if (content != null)
-        {
-            RectTransform contentRect = content.GetComponent<RectTransform>();
-            if (contentRect != null)
-            {
-                Vector2 size = contentRect.sizeDelta;
-                size.y = height;
-
-                contentRect.sizeDelta = size;
-            }
-        }
-    }
-
     // Suppress all the entries in the list
     public void DeleteAllEntries()
     {
@@ -269,9 +217,8 @@ public class DeleteMenu : MonoBehaviour
             Destroy(entry.entryObject);
         }
 
-        // Reinitialize the list and set the height of the content to the default value
+        // Reinitialize the list
         entries.Clear();
-        setContentHeight(30);
     }
 
 }
