@@ -27,6 +27,9 @@ public class DropdownSelection : MonoBehaviour
     [Tooltip("The GameObject to display when no prefab is in the favorites.")]
     public GameObject messageNoFavorite;
 
+    [Tooltip("The GameObject to display when no prefab is in the favorites.")]
+    public GameObject ArrowImageNoFavorite;
+
     [Tooltip("The Image component to display the selected prefab's image.")]
     public Image targetImageController;
 
@@ -79,6 +82,7 @@ public class DropdownSelection : MonoBehaviour
             favoriteElement.gameObject.SetActive(false);
             favoriteElement2.gameObject.SetActive(false);
             messageNoFavorite.SetActive(true);
+            ArrowImageNoFavorite.SetActive(true);
             targetImageController.enabled = false;
             targetImageControllerBackground.enabled = false;
 
@@ -90,6 +94,7 @@ public class DropdownSelection : MonoBehaviour
             favoriteElement.gameObject.SetActive(true);
             favoriteElement2.gameObject.SetActive(true);
             messageNoFavorite.SetActive(false);
+            ArrowImageNoFavorite.SetActive(false);
             targetImageController.enabled = true;
             targetImageControllerBackground.enabled = true;
         }

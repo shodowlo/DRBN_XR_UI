@@ -27,6 +27,7 @@ public class PrecomputeOutline : MonoBehaviour
         xmlDoc.Load(xmlPath);
         XmlNodeList nodes = xmlDoc.SelectNodes("//Image");
 
+
         foreach (XmlNode node in nodes)
         {
             string prefabPath = node.Attributes["prefab"]?.Value;
